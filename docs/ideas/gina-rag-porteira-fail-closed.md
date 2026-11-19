@@ -17,9 +17,9 @@ Público: recrutadores / portfólio. Sem prazo; qualidade e auditoria mandam. Pr
 - [ ] O Blender procedural chega a uma Gina reconhecível. Teste: um render de estúdio da cabeça comparado a `gina-head.png` antes de qualquer diorama.
 
 ## Fixtures de teste criados na org (2026-11-14)
-- Usuário `gina.rag.restricted@00dgk00000cqrt7uag.test` (`005gK00009kAxU5QAK`), perfil "Minimum Access - Salesforce", sem senha definida.
-- Permission set `Gina_RAG_Restricted_Test` (`0PSgK00000NmbssWAB`): leitura de Account, só o campo `Industry` além dos obrigatórios.
-- Objeto `Gina_Private_Note__c` (OWD privado, fonte em `salesforce/`), com os registros `a00gK00001VUGMrQAP` (do admin) e `a00gK00001VUa3hQAD` (do usuário restrito).
+- Usuário `gina.rag.restricted@<org-id>.test` (`005XXXXXXXXXXXXXXX`), perfil "Minimum Access - Salesforce", sem senha definida.
+- Permission set `Gina_RAG_Restricted_Test`: leitura de Account, só o campo `Industry` além dos obrigatórios.
+- Objeto `Gina_Private_Note__c` (OWD privado, fonte em `salesforce/`), com os registros `a00XXXXXXXXXXXXXXX` (do admin) e `a00YYYYYYYYYYYYYYY` (do usuário restrito).
 - Todos os outros OWD da org são públicos (Account = Edit) e a org não será alterada.
 
 ## O que está provado ao vivo, e o que não está
