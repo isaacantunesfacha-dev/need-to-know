@@ -1,0 +1,357 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 1660" width="2000" height="1660" role="img" aria-labelledby="title desc">
+<title id="title">Gina RAG architecture map</title>
+<desc id="desc">Two trails: offline clean ingestion into a vector record contract v1, and online fail-closed retrieval through contract check, verifyAccess, live re-read with hash check, local sanitization, Trust Layer, LLM and approval harness. Every gate denies on doubt and writes one audit line.</desc>
+<defs>
+<marker id="aLime" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#A3E635"/></marker>
+<marker id="aCyan" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#7DD3FC"/></marker>
+<marker id="aRed" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#F87171"/></marker>
+<marker id="aAmber" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#FBBF24"/></marker>
+<marker id="aMuted" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8C9AB3"/></marker>
+<pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#1A2540" stroke-width="1"/></pattern>
+<pattern id="gridMajor" width="200" height="200" patternUnits="userSpaceOnUse"><path d="M200 0H0V200" fill="none" stroke="#22304D" stroke-width="1"/></pattern>
+</defs>
+<rect width="2000" height="1660" fill="#0F172A"/>
+<rect width="2000" height="1660" fill="url(#grid)"/>
+<rect width="2000" height="1660" fill="url(#gridMajor)"/>
+<text x="80" y="74" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="14" font-weight="600" fill="#A3E635" text-anchor="start" letter-spacing="2" >GINA RAG  ·  ARCHITECTURE MAP  ·  MEASURED 2026-11-14</text>
+<text x="80" y="126" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="42" font-weight="800" fill="#F1F5F9" text-anchor="start" letter-spacing="-0.5" >Who may read what, before any text reaches a model</text>
+<text x="80" y="164" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="400" fill="#8C9AB3" text-anchor="start" letter-spacing="0" >Two trails. Every gate fails closed: an error, a timeout or a doubtful answer means deny. The index holds pointers and hashes, never the text.</text>
+<rect x="1500" y="52" width="420" height="124" rx="12" fill="#131D33" fill-opacity="1" stroke="#2B3A55" stroke-width="1.25"/>
+<text x="1520" y="80" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12" font-weight="600" fill="#8C9AB3" text-anchor="start" letter-spacing="1.5" >LEGEND</text>
+<path d="M1520 104 h44" fill="none" stroke="#A3E635" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1" marker-end="url(#aLime)"/>
+<text x="1578" y="109" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >ALLOW: passes to the next gate</text>
+<path d="M1520 130 h44" fill="none" stroke="#F87171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1" stroke-dasharray="6 5" marker-end="url(#aRed)"/>
+<text x="1578" y="135" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >DENY: fail closed, nothing served</text>
+<path d="M1520 156 h44" fill="none" stroke="#7DD3FC" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1" marker-end="url(#aCyan)"/>
+<text x="1578" y="161" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >data flow / live read from the org</text>
+<rect x="40" y="206" width="1920" height="258" rx="18" fill="none" fill-opacity="1" stroke="#3A4A68" stroke-width="1.25" stroke-dasharray="8 7"/>
+<rect x="64" y="224" width="65" height="24" rx="12.0" fill="#A3E635" fill-opacity="1" stroke="#A3E635" stroke-width="1.2"/>
+<text x="96.5" y="240.5" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="600" fill="#0F172A" text-anchor="middle" letter-spacing="0" >PART 1</text>
+<text x="152" y="242" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="700" fill="#F1F5F9" text-anchor="start" letter-spacing="0" >Offline trail · clean ingestion</text>
+<text x="452" y="242" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="13" font-weight="600" fill="#A3E635" text-anchor="start" letter-spacing="0" >Module 1 · done</text>
+<rect x="80" y="264" width="270" height="178" rx="14" fill="#131D33" fill-opacity="1" stroke="#2B3A55" stroke-width="1.25"/>
+<rect x="96" y="280" width="42" height="42" rx="10" fill="#7DD3FC" fill-opacity="0.12" stroke="#7DD3FC" stroke-opacity="0.45" stroke-width="1"/>
+<g transform="translate(105 289) scale(1.0)" fill="none" stroke="#7DD3FC" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></g>
+<text x="334" y="298" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="500" fill="#8C9AB3" text-anchor="end" letter-spacing="0" >1.1</text>
+<text x="96" y="352" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="17" font-weight="700" fill="#F1F5F9" text-anchor="start" letter-spacing="0" >Salesforce org</text>
+<text x="96" y="377" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >minha-org-agentforce</text>
+<text x="96" y="398" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >Developer Edition · API v68.0</text>
+<text x="96" y="419" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#7DD3FC" text-anchor="start" letter-spacing="0" >the only source of served text</text>
+<rect x="394" y="264" width="270" height="178" rx="14" fill="#131D33" fill-opacity="1" stroke="#2B3A55" stroke-width="1.25"/>
+<rect x="410" y="280" width="42" height="42" rx="10" fill="#7DD3FC" fill-opacity="0.12" stroke="#7DD3FC" stroke-opacity="0.45" stroke-width="1"/>
+<g transform="translate(419 289) scale(1.0)" fill="none" stroke="#7DD3FC" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></g>
+<text x="648" y="298" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="500" fill="#8C9AB3" text-anchor="end" letter-spacing="0" >1.2</text>
+<text x="410" y="352" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="17" font-weight="700" fill="#F1F5F9" text-anchor="start" letter-spacing="0" >Hygiene audit first</text>
+<text x="410" y="377" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >DBA approval is checked before</text>
+<text x="410" y="398" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >the CRM is even read</text>
+<text x="410" y="419" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="14" font-weight="400" fill="#F87171" text-anchor="start" letter-spacing="0" >else hygiene_unapproved</text>
+<rect x="708" y="264" width="270" height="178" rx="14" fill="#131D33" fill-opacity="1" stroke="#2B3A55" stroke-width="1.25"/>
+<rect x="724" y="280" width="42" height="42" rx="10" fill="#7DD3FC" fill-opacity="0.12" stroke="#7DD3FC" stroke-opacity="0.45" stroke-width="1"/>
+<g transform="translate(733 289) scale(1.0)" fill="none" stroke="#7DD3FC" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></g>
+<text x="962" y="298" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="500" fill="#8C9AB3" text-anchor="end" letter-spacing="0" >1.3</text>
+<text x="724" y="352" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="17" font-weight="700" fill="#F1F5F9" text-anchor="start" letter-spacing="0" >Allowlist read</text>
+<text x="724" y="377" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >fieldAllowlist + SystemModstamp</text>
+<text x="724" y="398" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="14" font-weight="400" fill="#A3E635" text-anchor="start" letter-spacing="0" >WITH USER_MODE</text>
+<text x="724" y="419" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="14" font-weight="400" fill="#F87171" text-anchor="start" letter-spacing="0" >else source_mismatch</text>
+<rect x="1022" y="264" width="270" height="178" rx="14" fill="#131D33" fill-opacity="1" stroke="#2B3A55" stroke-width="1.25"/>
+<rect x="1038" y="280" width="42" height="42" rx="10" fill="#7DD3FC" fill-opacity="0.12" stroke="#7DD3FC" stroke-opacity="0.45" stroke-width="1"/>
+<g transform="translate(1047 289) scale(1.0)" fill="none" stroke="#7DD3FC" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M9 13h6"/><path d="M9 17h4"/></g>
+<text x="1276" y="298" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="500" fill="#8C9AB3" text-anchor="end" letter-spacing="0" >1.4</text>
+<text x="1038" y="352" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="17" font-weight="700" fill="#F1F5F9" text-anchor="start" letter-spacing="0" >buildVectorRecord</text>
+<text x="1038" y="377" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >contract v1 (Part 3), same</text>
+<text x="1038" y="398" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >validation as retrieval</text>
+<text x="1038" y="419" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >chunkHash = sha256(...)</text>
+<rect x="1336" y="264" width="270" height="178" rx="14" fill="#131D33" fill-opacity="1" stroke="#2B3A55" stroke-width="1.25"/>
+<rect x="1352" y="280" width="42" height="42" rx="10" fill="#7DD3FC" fill-opacity="0.12" stroke="#7DD3FC" stroke-opacity="0.45" stroke-width="1"/>
+<g transform="translate(1361 289) scale(1.0)" fill="none" stroke="#7DD3FC" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4"/><path d="M12 16h.01"/></g>
+<text x="1590" y="298" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="500" fill="#8C9AB3" text-anchor="end" letter-spacing="0" >1.5</text>
+<text x="1352" y="352" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="17" font-weight="700" fill="#F1F5F9" text-anchor="start" letter-spacing="0" >Injection quarantine</text>
+<text x="1352" y="377" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >a poisoned record is held</text>
+<text x="1352" y="398" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >back and never enters</text>
+<text x="1352" y="419" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >the ranking</text>
+<rect x="1650" y="264" width="270" height="178" rx="14" fill="#131D33" fill-opacity="1" stroke="#2B3A55" stroke-width="1.25"/>
+<rect x="1666" y="280" width="42" height="42" rx="10" fill="#7DD3FC" fill-opacity="0.12" stroke="#7DD3FC" stroke-opacity="0.45" stroke-width="1"/>
+<g transform="translate(1675 289) scale(1.0)" fill="none" stroke="#7DD3FC" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></g>
+<text x="1904" y="298" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="500" fill="#8C9AB3" text-anchor="end" letter-spacing="0" >1.6</text>
+<text x="1666" y="352" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="17" font-weight="700" fill="#F1F5F9" text-anchor="start" letter-spacing="0" >Embed + index write</text>
+<text x="1666" y="377" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >row = pointer + fields + hash</text>
+<text x="1666" y="398" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >blue/green embeddingModelId</text>
+<text x="1666" y="419" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#FBBF24" text-anchor="start" letter-spacing="0" >embedder + store: simulated</text>
+<path d="M354 353 H388" fill="none" stroke="#7DD3FC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1" marker-end="url(#aCyan)"/>
+<path d="M668 353 H702" fill="none" stroke="#7DD3FC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1" marker-end="url(#aCyan)"/>
+<path d="M982 353 H1016" fill="none" stroke="#7DD3FC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1" marker-end="url(#aCyan)"/>
+<path d="M1296 353 H1330" fill="none" stroke="#7DD3FC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1" marker-end="url(#aCyan)"/>
+<path d="M1610 353 H1644" fill="none" stroke="#7DD3FC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1" marker-end="url(#aCyan)"/>
+<rect x="40" y="556" width="1920" height="548" rx="18" fill="none" fill-opacity="1" stroke="#3A4A68" stroke-width="1.25" stroke-dasharray="8 7"/>
+<rect x="64" y="574" width="65" height="24" rx="12.0" fill="#A3E635" fill-opacity="1" stroke="#A3E635" stroke-width="1.2"/>
+<text x="96.5" y="590.5" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="600" fill="#0F172A" text-anchor="middle" letter-spacing="0" >PART 2</text>
+<text x="152" y="592" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="700" fill="#F1F5F9" text-anchor="start" letter-spacing="0" >Online trail</text>
+<rect x="436" y="620" width="872" height="344" rx="14" fill="none" fill-opacity="1" stroke="#A3E635" stroke-width="1.1" stroke-dasharray="5 6"/>
+<text x="452" y="646" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12" font-weight="600" fill="#A3E635" text-anchor="start" letter-spacing="1.2" >FAIL-CLOSED RETRIEVER · M2 DONE</text>
+<rect x="1320" y="620" width="232" height="344" rx="14" fill="none" fill-opacity="1" stroke="#7DD3FC" stroke-width="1.1" stroke-dasharray="5 6"/>
+<text x="1336" y="646" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12" font-weight="600" fill="#7DD3FC" text-anchor="start" letter-spacing="1.2" >TRUST LAYER · M3 DONE</text>
+<rect x="80" y="664" width="140" height="196" rx="14" fill="#131D33" fill-opacity="1" stroke="#2B3A55" stroke-width="1.25"/>
+<rect x="96" y="680" width="42" height="42" rx="10" fill="#7DD3FC" fill-opacity="0.12" stroke="#7DD3FC" stroke-opacity="0.45" stroke-width="1"/>
+<g transform="translate(105 689) scale(1.0)" fill="none" stroke="#7DD3FC" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></g>
+<text x="204" y="698" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="500" fill="#8C9AB3" text-anchor="end" letter-spacing="0" >2.1</text>
+<text x="96" y="752" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="700" fill="#F1F5F9" text-anchor="start" letter-spacing="0" >User query</text>
+<text x="96" y="777" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >userId +</text>
+<text x="96" y="798" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >question</text>
+<rect x="248" y="664" width="160" height="196" rx="14" fill="#131D33" fill-opacity="1" stroke="#2B3A55" stroke-width="1.25"/>
+<rect x="264" y="680" width="42" height="42" rx="10" fill="#7DD3FC" fill-opacity="0.12" stroke="#7DD3FC" stroke-opacity="0.45" stroke-width="1"/>
+<g transform="translate(273 689) scale(1.0)" fill="none" stroke="#7DD3FC" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></g>
+<text x="392" y="698" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="500" fill="#8C9AB3" text-anchor="end" letter-spacing="0" >2.2</text>
+<text x="264" y="752" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="700" fill="#F1F5F9" text-anchor="start" letter-spacing="0" >Vector search</text>
+<text x="264" y="777" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >returns pointers:</text>
+<text x="264" y="798" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >record, fields,</text>
+<text x="264" y="819" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >hash. No text.</text>
+<rect x="452" y="664" width="180" height="196" rx="14" fill="#131D33" fill-opacity="1" stroke="#2B3A55" stroke-width="1.25"/>
+<rect x="468" y="680" width="42" height="42" rx="10" fill="#A3E635" fill-opacity="0.12" stroke="#A3E635" stroke-opacity="0.45" stroke-width="1"/>
+<g transform="translate(477 689) scale(1.0)" fill="none" stroke="#A3E635" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M9 13h6"/><path d="M9 17h4"/></g>
+<text x="616" y="698" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="500" fill="#8C9AB3" text-anchor="end" letter-spacing="0" >G1</text>
+<text x="468" y="752" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="700" fill="#F1F5F9" text-anchor="start" letter-spacing="0" >Contract check</text>
+<text x="468" y="777" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >schema · tenant ·</text>
+<text x="468" y="798" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >model · allowlist</text>
+<text x="468" y="819" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >· hygiene</text>
+<rect x="652" y="664" width="210" height="196" rx="14" fill="#131D33" fill-opacity="1" stroke="#2B3A55" stroke-width="1.25"/>
+<rect x="668" y="680" width="42" height="42" rx="10" fill="#A3E635" fill-opacity="0.12" stroke="#A3E635" stroke-opacity="0.45" stroke-width="1"/>
+<g transform="translate(677 689) scale(1.0)" fill="none" stroke="#A3E635" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m15.5 7.5 2.3 2.3a1 1 0 0 0 1.4 0l2.1-2.1a1 1 0 0 0 0-1.4L19 4"/><path d="m21 2-9.6 9.6"/><circle cx="7.5" cy="15.5" r="5.5"/></g>
+<text x="846" y="698" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="500" fill="#8C9AB3" text-anchor="end" letter-spacing="0" >G2</text>
+<text x="668" y="752" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="17" font-weight="700" fill="#F1F5F9" text-anchor="start" letter-spacing="0" >verifyAccess</text>
+<text x="668" y="777" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >object · field (FLS)</text>
+<text x="668" y="798" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >· record (sharing)</text>
+<text x="668" y="819" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >· object prefix</text>
+<rect x="882" y="664" width="210" height="196" rx="14" fill="#131D33" fill-opacity="1" stroke="#2B3A55" stroke-width="1.25"/>
+<rect x="898" y="680" width="42" height="42" rx="10" fill="#A3E635" fill-opacity="0.12" stroke="#A3E635" stroke-opacity="0.45" stroke-width="1"/>
+<g transform="translate(907 689) scale(1.0)" fill="none" stroke="#A3E635" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></g>
+<text x="1076" y="698" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="500" fill="#8C9AB3" text-anchor="end" letter-spacing="0" >G3</text>
+<text x="898" y="752" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="17" font-weight="700" fill="#F1F5F9" text-anchor="start" letter-spacing="0" >Live re-read</text>
+<text x="898" y="777" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="14" font-weight="400" fill="#A3E635" text-anchor="start" letter-spacing="0" >WITH USER_MODE</text>
+<text x="898" y="798" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >declared fields only</text>
+<text x="898" y="819" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >+ chunkHash check</text>
+<rect x="1112" y="664" width="180" height="196" rx="14" fill="#131D33" fill-opacity="1" stroke="#2B3A55" stroke-width="1.25"/>
+<rect x="1128" y="680" width="42" height="42" rx="10" fill="#A3E635" fill-opacity="0.12" stroke="#A3E635" stroke-opacity="0.45" stroke-width="1"/>
+<g transform="translate(1137 689) scale(1.0)" fill="none" stroke="#A3E635" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m7 21-4.3-4.3c-1-1-1-2.5 0-3.4l9.6-9.6c1-1 2.5-1 3.4 0l5.6 5.6c1 1 1 2.5 0 3.4L13 21"/><path d="M22 21H7"/><path d="m5 11 9 9"/></g>
+<text x="1276" y="698" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="500" fill="#8C9AB3" text-anchor="end" letter-spacing="0" >G4</text>
+<text x="1128" y="752" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="700" fill="#F1F5F9" text-anchor="start" letter-spacing="0" >Local sanitizer</text>
+<text x="1128" y="777" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >Unicode tags, zero-</text>
+<text x="1128" y="798" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >width, bidi, hidden</text>
+<text x="1128" y="819" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >HTML, split payloads</text>
+<rect x="1336" y="664" width="200" height="196" rx="14" fill="#131D33" fill-opacity="1" stroke="#2B3A55" stroke-width="1.25"/>
+<rect x="1352" y="680" width="42" height="42" rx="10" fill="#7DD3FC" fill-opacity="0.12" stroke="#7DD3FC" stroke-opacity="0.45" stroke-width="1"/>
+<g transform="translate(1361 689) scale(1.0)" fill="none" stroke="#7DD3FC" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10.73 5.08a10.74 10.74 0 0 1 11.2 6.57 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-1.44 2.49"/><path d="M14.08 14.16a3 3 0 0 1-4.24-4.24"/><path d="M17.48 17.5a10.75 10.75 0 0 1-15.42-5.15 1 1 0 0 1 0-.7 10.75 10.75 0 0 1 4.45-5.14"/><path d="m2 2 20 20"/></g>
+<text x="1520" y="698" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="500" fill="#8C9AB3" text-anchor="end" letter-spacing="0" >2.7</text>
+<text x="1352" y="752" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="17" font-weight="700" fill="#F1F5F9" text-anchor="start" letter-spacing="0" >Classifier + PII</text>
+<text x="1352" y="777" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >qwen2.5:7b</text>
+<text x="1352" y="798" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >local, via Ollama</text>
+<text x="1352" y="819" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >+ PII masking</text>
+<rect x="1564" y="664" width="130" height="196" rx="14" fill="#131D33" fill-opacity="1" stroke="#2B3A55" stroke-width="1.25"/>
+<rect x="1580" y="680" width="42" height="42" rx="10" fill="#7DD3FC" fill-opacity="0.12" stroke="#7DD3FC" stroke-opacity="0.45" stroke-width="1"/>
+<g transform="translate(1589 689) scale(1.0)" fill="none" stroke="#7DD3FC" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></g>
+<text x="1678" y="698" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="500" fill="#8C9AB3" text-anchor="end" letter-spacing="0" >2.8</text>
+<text x="1580" y="752" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="700" fill="#F1F5F9" text-anchor="start" letter-spacing="0" >LLM</text>
+<text x="1580" y="777" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >reads only</text>
+<text x="1580" y="798" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >re-read,</text>
+<text x="1580" y="819" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >clean text</text>
+<rect x="1722" y="664" width="198" height="196" rx="14" fill="#131D33" fill-opacity="1" stroke="#2B3A55" stroke-width="1.25"/>
+<rect x="1738" y="680" width="42" height="42" rx="10" fill="#A3E635" fill-opacity="0.12" stroke="#A3E635" stroke-opacity="0.45" stroke-width="1"/>
+<g transform="translate(1747 689) scale(1.0)" fill="none" stroke="#A3E635" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m16 11 2 2 4-4"/></g>
+<text x="1904" y="698" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="500" fill="#8C9AB3" text-anchor="end" letter-spacing="0" >2.9</text>
+<text x="1738" y="752" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="17" font-weight="700" fill="#F1F5F9" text-anchor="start" letter-spacing="0" >Approval Harness</text>
+<text x="1738" y="777" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >one write: a Task</text>
+<text x="1738" y="798" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >a human approves</text>
+<text x="1738" y="819" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >the exact payload</text>
+<text x="1738" y="844" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12" font-weight="600" fill="#A3E635" text-anchor="start" letter-spacing="0.6" >M5 · DONE</text>
+<path d="M223 762.0 H243" fill="none" stroke="#7DD3FC" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1" marker-end="url(#aCyan)"/>
+<path d="M411 762.0 H447" fill="none" stroke="#A3E635" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1" marker-end="url(#aLime)"/>
+<path d="M635 762.0 H647" fill="none" stroke="#A3E635" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1" marker-end="url(#aLime)"/>
+<path d="M865 762.0 H877" fill="none" stroke="#A3E635" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1" marker-end="url(#aLime)"/>
+<path d="M1095 762.0 H1107" fill="none" stroke="#A3E635" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1" marker-end="url(#aLime)"/>
+<path d="M1295 762.0 H1331" fill="none" stroke="#A3E635" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1" marker-end="url(#aLime)"/>
+<path d="M1539 762.0 H1559" fill="none" stroke="#A3E635" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1" marker-end="url(#aLime)"/>
+<path d="M1697 762.0 H1717" fill="none" stroke="#A3E635" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1" marker-end="url(#aLime)"/>
+<path d="M474 864 V1050" fill="none" stroke="#F87171" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1" stroke-dasharray="6 5"/>
+<circle cx="474" cy="1054" r="4" fill="#F87171"/>
+<text x="486" y="898" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="700" fill="#F87171" text-anchor="start" letter-spacing="0" >fls_denied</text>
+<text x="486" y="920" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="500" fill="#FCA5A5" text-anchor="start" letter-spacing="0" >undeclared_field</text>
+<text x="486" y="942" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="500" fill="#FCA5A5" text-anchor="start" letter-spacing="0" >hygiene_unapproved</text>
+<path d="M674 864 V1050" fill="none" stroke="#F87171" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1" stroke-dasharray="6 5"/>
+<circle cx="674" cy="1054" r="4" fill="#F87171"/>
+<text x="686" y="898" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="700" fill="#F87171" text-anchor="start" letter-spacing="0" >fls_denied</text>
+<text x="686" y="920" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="500" fill="#FCA5A5" text-anchor="start" letter-spacing="0" >field/record_denied</text>
+<text x="686" y="942" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="500" fill="#FCA5A5" text-anchor="start" letter-spacing="0" >fls_unreadable, timeout</text>
+<path d="M904 864 V1050" fill="none" stroke="#F87171" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1" stroke-dasharray="6 5"/>
+<circle cx="904" cy="1054" r="4" fill="#F87171"/>
+<text x="916" y="898" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="700" fill="#F87171" text-anchor="start" letter-spacing="0" >fls_denied</text>
+<text x="916" y="920" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="500" fill="#FCA5A5" text-anchor="start" letter-spacing="0" >stale_chunk</text>
+<text x="916" y="942" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="500" fill="#FCA5A5" text-anchor="start" letter-spacing="0" >fls_unreadable (mismatch)</text>
+<path d="M1134 864 V1050" fill="none" stroke="#F87171" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1" stroke-dasharray="6 5"/>
+<circle cx="1134" cy="1054" r="4" fill="#F87171"/>
+<text x="1146" y="898" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="700" fill="#F87171" text-anchor="start" letter-spacing="0" >injection_detected</text>
+<text x="1146" y="920" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="500" fill="#FCA5A5" text-anchor="start" letter-spacing="0" >embedded_instruction</text>
+<text x="1146" y="942" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="500" fill="#FCA5A5" text-anchor="start" letter-spacing="0" >hidden_payload</text>
+<path d="M1358 864 V1050" fill="none" stroke="#F87171" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1" stroke-dasharray="6 5"/>
+<circle cx="1358" cy="1054" r="4" fill="#F87171"/>
+<text x="1370" y="898" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="700" fill="#F87171" text-anchor="start" letter-spacing="0" >injection_detected</text>
+<text x="1370" y="920" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="500" fill="#FCA5A5" text-anchor="start" letter-spacing="0" >classifier_flagged</text>
+<text x="1370" y="942" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="500" fill="#FCA5A5" text-anchor="start" letter-spacing="0" >safety_unverified</text>
+<path d="M474 1054 H1560" fill="none" stroke="#F87171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1" stroke-dasharray="6 5" marker-end="url(#aRed)"/>
+<text x="1000" y="1084" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="13" font-weight="700" fill="#F87171" text-anchor="middle" letter-spacing="0" >DENY · the chunk is dropped and the decision is logged</text>
+<rect x="80" y="890" width="328" height="144" rx="14" fill="#131D33" fill-opacity="1" stroke="#FBBF24" stroke-width="1.25" stroke-dasharray="6 5"/>
+<rect x="96" y="906" width="36" height="36" rx="9" fill="#FBBF24" fill-opacity="0.12" stroke="#FBBF24" stroke-opacity="0.45"/>
+<g transform="translate(103 913) scale(0.9166666666666666)" fill="none" stroke="#FBBF24" stroke-width="1.91" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v12"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></g>
+<text x="144" y="922" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="700" fill="#F1F5F9" text-anchor="start" letter-spacing="0" >Query router</text>
+<text x="144" y="940" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="11.5" font-weight="600" fill="#FBBF24" text-anchor="start" letter-spacing="0.8" >PROPOSED · NOT BUILT</text>
+<text x="96" y="972" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >SOQL for structured questions, RAG</text>
+<text x="96" y="993" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >otherwise; in doubt, RAG. Same</text>
+<text x="96" y="1014" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >verifyAccess gates on both paths.</text>
+<path d="M150.0 864 V887" fill="none" stroke="#FBBF24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1" stroke-dasharray="5 5" marker-end="url(#aAmber)"/>
+<rect x="1564" y="890" width="356" height="196" rx="14" fill="#131D33" fill-opacity="1" stroke="#2B3A55" stroke-width="1.25"/>
+<rect x="1580" y="906" width="36" height="36" rx="9" fill="#7DD3FC" fill-opacity="0.12" stroke="#7DD3FC" stroke-opacity="0.45"/>
+<g transform="translate(1587 913) scale(0.9166666666666666)" fill="none" stroke="#7DD3FC" stroke-width="1.91" stroke-linecap="round" stroke-linejoin="round"><path d="M15 12h-5"/><path d="M15 8h-5"/><path d="M19 17V5a2 2 0 0 0-2-2H4"/><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"/></g>
+<text x="1628" y="922" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="700" fill="#F1F5F9" text-anchor="start" letter-spacing="0" >Audit log</text>
+<text x="1628" y="940" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="11.5" font-weight="600" fill="#7DD3FC" text-anchor="start" letter-spacing="0.8" >ONE LINE PER DECISION</text>
+<text x="1580" y="976" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="13.5" font-weight="500" fill="#A3E635" text-anchor="start" letter-spacing="0" >{ decision, reason, detail,</text>
+<text x="1580" y="997" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="13.5" font-weight="500" fill="#A3E635" text-anchor="start" letter-spacing="0" >  userId, recordId,</text>
+<text x="1580" y="1018" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="13.5" font-weight="500" fill="#A3E635" text-anchor="start" letter-spacing="0" >  latencyMs }</text>
+<text x="1580" y="1050" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="400" fill="#8C9AB3" text-anchor="start" letter-spacing="0" >never chunk text, never field values</text>
+<text x="1580" y="1070" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="400" fill="#8C9AB3" text-anchor="start" letter-spacing="0" >reason derived from detail in code</text>
+<path d="M1821.0 864 V887" fill="none" stroke="#A3E635" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1" stroke-dasharray="2 5" marker-end="url(#aLime)"/>
+<text x="1811.0" y="882" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12" font-weight="500" fill="#A3E635" text-anchor="end" letter-spacing="0" >allow is logged too</text>
+<path d="M1785.0 445 V490 H382 V661" fill="none" stroke="#7DD3FC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1" marker-end="url(#aCyan)"/>
+<rect x="1073.9" y="479.0" width="452.1" height="23" rx="5" fill="#0F172A"/>
+<text x="1300" y="495" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="13" font-weight="500" fill="#7DD3FC" text-anchor="middle" letter-spacing="0" >index row: pointer + fields + chunkHash, never the text</text>
+<path d="M987.0 617 V524 H391 A9 9 0 0 0 373 524 H215.0 V445" fill="none" stroke="#7DD3FC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1" marker-end="url(#aCyan)"/>
+<path d="M757.0 617 V524" fill="none" stroke="#7DD3FC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1"/>
+<circle cx="757.0" cy="524" r="4" fill="#7DD3FC"/>
+<rect x="385.5" y="513.0" width="349.1" height="23" rx="5" fill="#0F172A"/>
+<text x="560" y="529" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="13" font-weight="500" fill="#7DD3FC" text-anchor="middle" letter-spacing="0" >live: verifyAccess + re-read query the org</text>
+<path d="M757.0 617 V661" fill="none" stroke="#7DD3FC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1" marker-end="url(#aCyan)"/>
+<path d="M987.0 617 V661" fill="none" stroke="#7DD3FC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="1" marker-end="url(#aCyan)"/>
+<rect x="40" y="1132" width="1920" height="500" rx="18" fill="none" fill-opacity="1" stroke="#3A4A68" stroke-width="1.25" stroke-dasharray="8 7"/>
+<rect x="64" y="1150" width="65" height="24" rx="12.0" fill="#A3E635" fill-opacity="1" stroke="#A3E635" stroke-width="1.2"/>
+<text x="96.5" y="1166.5" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="600" fill="#0F172A" text-anchor="middle" letter-spacing="0" >PART 3</text>
+<text x="152" y="1168" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="19" font-weight="700" fill="#F1F5F9" text-anchor="start" letter-spacing="0" >Contract, reasons and measured telemetry</text>
+<rect x="1761" y="1150" width="159" height="24" rx="12.0" fill="#0F172A" fill-opacity="1" stroke="#8C9AB3" stroke-width="1.2" stroke-dasharray="4 4"/>
+<text x="1840.5" y="1166.32" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12" font-weight="600" fill="#8C9AB3" text-anchor="middle" letter-spacing="0" >MCP gateway planned</text>
+<rect x="1682" y="1150" width="71" height="24" rx="12.0" fill="#0F172A" fill-opacity="1" stroke="#A3E635" stroke-width="1.2"/>
+<text x="1717.5" y="1166.32" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12" font-weight="600" fill="#A3E635" text-anchor="middle" letter-spacing="0" >M5 done</text>
+<rect x="1603" y="1150" width="71" height="24" rx="12.0" fill="#0F172A" fill-opacity="1" stroke="#A3E635" stroke-width="1.2"/>
+<text x="1638.5" y="1166.32" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12" font-weight="600" fill="#A3E635" text-anchor="middle" letter-spacing="0" >M4 done</text>
+<rect x="1524" y="1150" width="71" height="24" rx="12.0" fill="#0F172A" fill-opacity="1" stroke="#A3E635" stroke-width="1.2"/>
+<text x="1559.5" y="1166.32" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12" font-weight="600" fill="#A3E635" text-anchor="middle" letter-spacing="0" >M3 done</text>
+<rect x="1445" y="1150" width="71" height="24" rx="12.0" fill="#0F172A" fill-opacity="1" stroke="#A3E635" stroke-width="1.2"/>
+<text x="1480.5" y="1166.32" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12" font-weight="600" fill="#A3E635" text-anchor="middle" letter-spacing="0" >M2 done</text>
+<rect x="1366" y="1150" width="71" height="24" rx="12.0" fill="#0F172A" fill-opacity="1" stroke="#A3E635" stroke-width="1.2"/>
+<text x="1401.5" y="1166.32" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12" font-weight="600" fill="#A3E635" text-anchor="middle" letter-spacing="0" >M1 done</text>
+<rect x="80" y="1202" width="560" height="404" rx="14" fill="#131D33" fill-opacity="1" stroke="#2B3A55" stroke-width="1.25"/>
+<g transform="translate(100 1222) scale(0.9166666666666666)" fill="none" stroke="#A3E635" stroke-width="1.91" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M9 13h6"/><path d="M9 17h4"/></g>
+<text x="134" y="1240" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="17" font-weight="700" fill="#F1F5F9" text-anchor="start" letter-spacing="0" >Vector record contract v1</text>
+<text x="622" y="1240" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="500" fill="#8C9AB3" text-anchor="end" letter-spacing="0" >3.A</text>
+<line x1="100" y1="1263" x2="620" y2="1263" stroke="#2B3A55"/>
+<text x="100" y="1284" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="13.5" font-weight="600" fill="#A3E635" text-anchor="start" letter-spacing="0" >schemaVersion</text>
+<text x="294" y="1284" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="13.5" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >literal 1</text>
+<line x1="100" y1="1293" x2="620" y2="1293" stroke="#2B3A55"/>
+<text x="100" y="1314" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="13.5" font-weight="600" fill="#A3E635" text-anchor="start" letter-spacing="0" >tenantId</text>
+<text x="294" y="1314" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="13.5" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >18-char org id, matches policy</text>
+<line x1="100" y1="1323" x2="620" y2="1323" stroke="#2B3A55"/>
+<text x="100" y="1344" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="13.5" font-weight="600" fill="#A3E635" text-anchor="start" letter-spacing="0" >fields</text>
+<text x="294" y="1344" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="13.5" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >each one in fieldAllowlist</text>
+<line x1="100" y1="1353" x2="620" y2="1353" stroke="#2B3A55"/>
+<text x="100" y="1374" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="13.5" font-weight="600" fill="#A3E635" text-anchor="start" letter-spacing="0" >chunkHash</text>
+<text x="294" y="1374" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="13.5" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >sha256(object, recordId,</text>
+<text x="100" y="1404" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="13.5" font-weight="600" fill="#A3E635" text-anchor="start" letter-spacing="0" ></text>
+<text x="294" y="1404" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="13.5" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >sorted field/value pairs)</text>
+<line x1="100" y1="1413" x2="620" y2="1413" stroke="#2B3A55"/>
+<text x="100" y="1434" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="13.5" font-weight="600" fill="#A3E635" text-anchor="start" letter-spacing="0" >embeddingModelId</text>
+<text x="294" y="1434" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="13.5" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >in accepted set (blue/green)</text>
+<line x1="100" y1="1443" x2="620" y2="1443" stroke="#2B3A55"/>
+<text x="100" y="1464" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="13.5" font-weight="600" fill="#A3E635" text-anchor="start" letter-spacing="0" >sourceModifiedAt</text>
+<text x="294" y="1464" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="13.5" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >SystemModstamp, ISO UTC</text>
+<line x1="100" y1="1473" x2="620" y2="1473" stroke="#2B3A55"/>
+<text x="100" y="1494" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="13.5" font-weight="600" fill="#A3E635" text-anchor="start" letter-spacing="0" >hygiene</text>
+<text x="294" y="1494" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="13.5" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >approved · auditedBy · auditedAt</text>
+<text x="100" y="1556" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >Policy comes from config, never from the index.</text>
+<text x="100" y="1580" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="400" fill="#8C9AB3" text-anchor="start" letter-spacing="0" >Any failure: fls_denied, before any org query.</text>
+<rect x="664" y="1202" width="556" height="404" rx="14" fill="#131D33" fill-opacity="1" stroke="#2B3A55" stroke-width="1.25"/>
+<g transform="translate(684 1222) scale(0.9166666666666666)" fill="none" stroke="#F87171" stroke-width="1.91" stroke-linecap="round" stroke-linejoin="round"><path d="M2.59 16.73A2 2 0 0 1 2 15.31V8.69a2 2 0 0 1 .59-1.41l4.69-4.69A2 2 0 0 1 8.69 2h6.62a2 2 0 0 1 1.41.59l4.69 4.69A2 2 0 0 1 22 8.69v6.62a2 2 0 0 1-.59 1.41l-4.69 4.69a2 2 0 0 1-1.41.59H8.69a2 2 0 0 1-1.41-.59z"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></g>
+<text x="718" y="1240" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="17" font-weight="700" fill="#F1F5F9" text-anchor="start" letter-spacing="0" >Closed reason enum · real decisions</text>
+<text x="1202" y="1240" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="500" fill="#8C9AB3" text-anchor="end" letter-spacing="0" >3.B</text>
+<rect x="684" y="1262" width="71" height="24" rx="12.0" fill="#0F172A" fill-opacity="1" stroke="#A3E635" stroke-width="1.2"/>
+<text x="719.5" y="1278.32" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12" font-weight="600" fill="#A3E635" text-anchor="middle" letter-spacing="0" >allowed</text>
+<rect x="763" y="1262" width="93" height="24" rx="12.0" fill="#0F172A" fill-opacity="1" stroke="#F87171" stroke-width="1.2"/>
+<text x="809.5" y="1278.32" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12" font-weight="600" fill="#F87171" text-anchor="middle" letter-spacing="0" >fls_denied</text>
+<rect x="864" y="1262" width="122" height="24" rx="12.0" fill="#0F172A" fill-opacity="1" stroke="#F87171" stroke-width="1.2"/>
+<text x="925.0" y="1278.32" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12" font-weight="600" fill="#F87171" text-anchor="middle" letter-spacing="0" >fls_unreadable</text>
+<rect x="684" y="1296" width="71" height="24" rx="12.0" fill="#0F172A" fill-opacity="1" stroke="#F87171" stroke-width="1.2"/>
+<text x="719.5" y="1312.32" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12" font-weight="600" fill="#F87171" text-anchor="middle" letter-spacing="0" >timeout</text>
+<rect x="763" y="1296" width="129" height="24" rx="12.0" fill="#0F172A" fill-opacity="1" stroke="#F87171" stroke-width="1.2"/>
+<text x="827.5" y="1312.32" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12" font-weight="600" fill="#F87171" text-anchor="middle" letter-spacing="0" >retriever_error</text>
+<rect x="900" y="1296" width="144" height="24" rx="12.0" fill="#0F172A" fill-opacity="1" stroke="#F87171" stroke-width="1.2"/>
+<text x="972.0" y="1312.32" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12" font-weight="600" fill="#F87171" text-anchor="middle" letter-spacing="0" >malformed_request</text>
+<rect x="684" y="1330" width="151" height="24" rx="12.0" fill="#0F172A" fill-opacity="1" stroke="#F87171" stroke-width="1.2"/>
+<text x="759.5" y="1346.32" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12" font-weight="600" fill="#F87171" text-anchor="middle" letter-spacing="0" >injection_detected</text>
+<rect x="843" y="1330" width="144" height="24" rx="12.0" fill="#0F172A" fill-opacity="1" stroke="#FBBF24" stroke-width="1.2"/>
+<text x="915.0" y="1346.32" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12" font-weight="600" fill="#FBBF24" text-anchor="middle" letter-spacing="0" >safety_unverified</text>
+<rect x="995" y="1330" width="159" height="24" rx="12.0" fill="#0F172A" fill-opacity="1" stroke="#8C9AB3" stroke-width="1.2" stroke-dasharray="4 4"/>
+<text x="1074.5" y="1346.32" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12" font-weight="600" fill="#8C9AB3" text-anchor="middle" letter-spacing="0" >toxicity · reserved</text>
+<text x="684" y="1388" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12" font-weight="600" fill="#8C9AB3" text-anchor="start" letter-spacing="0.8" >decision / reason / detail</text>
+<circle cx="690" cy="1409.5" r="4" fill="#A3E635"/>
+<text x="702" y="1414" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="600" fill="#A3E635" text-anchor="start" letter-spacing="0" >allow / allowed / ok</text>
+<text x="1202" y="1414" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="400" fill="#8C9AB3" text-anchor="end" letter-spacing="0" >Account.Name + Industry</text>
+<circle cx="690" cy="1435.5" r="4" fill="#F87171"/>
+<text x="702" y="1440" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="600" fill="#F87171" text-anchor="start" letter-spacing="0" >deny / fls_denied / undeclared_field</text>
+<text x="1202" y="1440" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="400" fill="#8C9AB3" text-anchor="end" letter-spacing="0" >AnnualRevenue row · 0 queries</text>
+<circle cx="690" cy="1461.5" r="4" fill="#F87171"/>
+<text x="702" y="1466" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="600" fill="#F87171" text-anchor="start" letter-spacing="0" >deny / fls_denied / field_denied</text>
+<text x="1202" y="1466" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="400" fill="#8C9AB3" text-anchor="end" letter-spacing="0" >restricted · AnnualRevenue</text>
+<circle cx="690" cy="1487.5" r="4" fill="#F87171"/>
+<text x="702" y="1492" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="600" fill="#F87171" text-anchor="start" letter-spacing="0" >deny / fls_denied / record_denied</text>
+<text x="1202" y="1492" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="400" fill="#8C9AB3" text-anchor="end" letter-spacing="0" >note owned by another user</text>
+<circle cx="690" cy="1513.5" r="4" fill="#F87171"/>
+<text x="702" y="1518" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="600" fill="#F87171" text-anchor="start" letter-spacing="0" >deny / fls_denied / stale_chunk</text>
+<text x="1202" y="1518" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="400" fill="#8C9AB3" text-anchor="end" letter-spacing="0" >CRM changed after ingestion</text>
+<circle cx="690" cy="1539.5" r="4" fill="#F87171"/>
+<text x="702" y="1544" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="600" fill="#F87171" text-anchor="start" letter-spacing="0" >deny / injection_detected / embedded_instruction</text>
+<text x="1202" y="1544" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="400" fill="#8C9AB3" text-anchor="end" letter-spacing="0" >split Industry + Name*</text>
+<text x="684" y="1588" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="400" fill="#8C9AB3" text-anchor="start" letter-spacing="0" >Live, minha-org-agentforce, sf CLI. *Offline suite.</text>
+<rect x="1244" y="1202" width="676" height="404" rx="14" fill="#131D33" fill-opacity="1" stroke="#A3E635" stroke-width="1.25"/>
+<g transform="translate(1264 1222) scale(0.9166666666666666)" fill="none" stroke="#A3E635" stroke-width="1.91" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></g>
+<text x="1298" y="1240" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="17" font-weight="700" fill="#F1F5F9" text-anchor="start" letter-spacing="0" >Telemetry · measured 2026-11-14</text>
+<text x="1902" y="1240" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="500" fill="#8C9AB3" text-anchor="end" letter-spacing="0" >3.C</text>
+<rect x="1264" y="1258" width="204" height="78" rx="10" fill="#0F182C" fill-opacity="1" stroke="#2B3A55" stroke-width="1.25"/>
+<text x="1278" y="1294" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="24" font-weight="700" fill="#A3E635" text-anchor="start" letter-spacing="-0.5" >231/231</text>
+<text x="1278" y="1318" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >offline tests · tsc clean</text>
+<rect x="1478" y="1258" width="204" height="78" rx="10" fill="#0F182C" fill-opacity="1" stroke="#2B3A55" stroke-width="1.25"/>
+<text x="1492" y="1294" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="24" font-weight="700" fill="#A3E635" text-anchor="start" letter-spacing="-0.5" >0</text>
+<text x="1492" y="1318" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >leakage · 36 scenarios</text>
+<rect x="1692" y="1258" width="204" height="78" rx="10" fill="#0F182C" fill-opacity="1" stroke="#2B3A55" stroke-width="1.25"/>
+<text x="1706" y="1294" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="24" font-weight="700" fill="#A3E635" text-anchor="start" letter-spacing="-0.5" >57/57</text>
+<text x="1706" y="1318" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >detail accuracy (eval)</text>
+<rect x="1264" y="1346" width="204" height="78" rx="10" fill="#0F182C" fill-opacity="1" stroke="#2B3A55" stroke-width="1.25"/>
+<text x="1278" y="1382" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="24" font-weight="700" fill="#A3E635" text-anchor="start" letter-spacing="-0.5" >18/18</text>
+<text x="1278" y="1406" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >live checks · real org</text>
+<rect x="1478" y="1346" width="204" height="78" rx="10" fill="#0F182C" fill-opacity="1" stroke="#2B3A55" stroke-width="1.25"/>
+<text x="1492" y="1382" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="20" font-weight="700" fill="#A3E635" text-anchor="start" letter-spacing="-0.5" >2,465 / 3,449</text>
+<text x="1492" y="1406" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >verifyAccess P50/P95 ms</text>
+<rect x="1692" y="1346" width="204" height="78" rx="10" fill="#0F182C" fill-opacity="1" stroke="#2B3A55" stroke-width="1.25"/>
+<text x="1706" y="1382" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="20" font-weight="700" fill="#A3E635" text-anchor="start" letter-spacing="-0.5" >4,627 / 5,709</text>
+<text x="1706" y="1406" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >1-chunk read P50/P95 ms</text>
+<text x="1264" y="1452" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="400" fill="#8C9AB3" text-anchor="start" letter-spacing="0" >Live latency: sf CLI transport, 20 samples. Leakage per independent oracle.</text>
+<text x="1264" y="1480" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="600" fill="#F1F5F9" text-anchor="start" letter-spacing="0" >Prompt injection · blind corpus v2 (80 attacks / 80 benign) · 5 runs</text>
+<text x="1264" y="1510" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >patterns alone</text>
+<rect x="1480" y="1499" width="400" height="12" rx="6" fill="#1E293B"/>
+<rect x="1480" y="1499" width="120.0" height="12" rx="6" fill="#8C9AB3" fill-opacity="0.85"/>
+<text x="1608.0" y="1510" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="600" fill="#F1F5F9" text-anchor="start" letter-spacing="0" >30.0%</text>
+<text x="1264" y="1536" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >patterns + classifier</text>
+<rect x="1480" y="1525" width="400" height="12" rx="6" fill="#1E293B"/>
+<rect x="1480" y="1525" width="305.2" height="12" rx="6" fill="#A3E635" fill-opacity="0.85"/>
+<rect x="1785.2" y="1525" width="20.0" height="12" fill="#A3E635" fill-opacity="0.4"/>
+<line x1="1800.0" y1="1521" x2="1800.0" y2="1541" stroke="#F1F5F9" stroke-width="2"/>
+<text x="1813.2" y="1536" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="600" fill="#F1F5F9" text-anchor="start" letter-spacing="0" >76.3–81.3%</text>
+<text x="1264" y="1562" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="400" fill="#CBD5E1" text-anchor="start" letter-spacing="0" >caught in every run</text>
+<rect x="1480" y="1551" width="400" height="12" rx="6" fill="#1E293B"/>
+<rect x="1480" y="1551" width="285.2" height="12" rx="6" fill="#A3E635" fill-opacity="0.85"/>
+<text x="1773.2" y="1562" font-family="'JetBrains Mono', 'SF Mono', Menlo, monospace" font-size="12.5" font-weight="600" fill="#F1F5F9" text-anchor="start" letter-spacing="0" >71.3%</text>
+<text x="1264" y="1584" font-family="'Plus Jakarta Sans', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="12.5" font-weight="400" fill="#8C9AB3" text-anchor="start" letter-spacing="0" >median 80.0% (white tick) · false positives 0–1.3% · a layer, not a barrier</text>
+</svg>

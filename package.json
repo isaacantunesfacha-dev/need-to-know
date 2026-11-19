@@ -1,0 +1,36 @@
+{
+  "name": "need-to-know",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Fail-closed retrieval for Salesforce RAG. Extension of gina-training-lab.",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "lint": "tsc --noEmit",
+    "test": "node --test tests/*.test.ts",
+    "test:adversarial": "node --test tests/*.test.ts",
+    "check:live": "node scripts/live-check.ts",
+    "eval": "node scripts/eval.ts",
+    "eval:classifier": "node scripts/eval-classifier.ts",
+    "audit:governance": "bash .agents/skills/rag-governance-auditor/scripts/quick-audit.sh",
+    "mcp": "node scripts/mcp-server.ts",
+    "approvals": "node scripts/approvals.ts",
+    "local": "node scripts/local.ts",
+    "demo": "node scripts/demo.ts",
+    "agent:test": "node scripts/agent-test.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^7.0.2"
+  },
+  "packageManager": "pnpm@12.18.0",
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "24.22.0"
+    }
+  }
+}

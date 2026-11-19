@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+<defs>
+  <filter id="wobble" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.032" numOctaves="2" seed="7" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="3.5"/>
+  </filter>
+  <filter id="wobble-soft" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="1" seed="3" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="1.6"/>
+  </filter>
+  <marker id="arrow-orange" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse">
+    <path d="M1 1 L10 6 L1 11" fill="none" stroke="#F07A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+  <marker id="arrow-red" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="11" markerHeight="11" orient="auto">
+    <path d="M1 1 L10 6 L1 11" fill="none" stroke="#E5322D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+  <marker id="arrow-blue" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="11" markerHeight="11" orient="auto">
+    <path d="M1 1 L10 6 L1 11" fill="none" stroke="#2F6FDF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+<rect width="1600" height="900" fill="#ffffff"/>
+
+<g filter="url(#wobble)">
+  <ellipse cx="800" cy="470" rx="470" ry="250" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <ellipse cx="800" cy="470" rx="400" ry="196" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M358 384 L358 300" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M565 253 L565 170" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M1035 253 L1035 170" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M1242 384 L1242 300" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M1226 576 L1226 650" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="284" y="244" width="148" height="56" rx="4" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/>
+  <rect x="475" y="114" width="180" height="56" rx="4" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/>
+  <rect x="955" y="114" width="160" height="56" rx="4" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/>
+  <rect x="1158" y="244" width="168" height="56" rx="4" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/>
+  <rect x="1162" y="650" width="128" height="56" rx="4" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/>
+  <!-- the audit notebook in the middle -->
+  <path d="M700 420 L900 400 L912 530 L712 552 Z" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/>
+  <path d="M806 410 L818 541" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M726 446 L790 440 M728 470 L786 465 M730 494 L780 490 M832 436 L890 430 M834 460 L884 455 M836 484 L894 478" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- cart with one record card, pushed by the creature on the bottom of the track -->
+  <path d="M560 690 L700 690 L690 740 L572 740 Z" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/>
+  <circle cx="592" cy="752" r="12" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/><circle cx="672" cy="752" r="12" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/>
+  <path d="M592 690 L600 640 L668 636 L676 690" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/>
+  <path d="M612 656 L656 653 M612 670 L648 668" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<path d="M676 690 L712 668" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<g transform="translate(770 770) rotate(-14) scale(1)">
+    <path d="M-14 -12 L-18 0 M14 -12 L16 0" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M-18 0 L-28 2 M16 0 L26 2" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <path d="M-38 -40 C-46 -110 -30 -168 6 -170 C44 -172 52 -112 46 -52 C42 -18 22 -8 2 -8 C-22 -8 -34 -18 -38 -40 Z" fill="#111111"/>
+    <circle cx="-8" cy="-128" r="5.5" fill="#fff"/>
+    <circle cx="14" cy="-128" r="5.5" fill="#fff"/>
+    <path d="M-30 -96 L-52 -100 L-64 -104" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M-28 -76 L-50 -80 L-62 -86" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+<text x="358" y="284" fill="#111111" text-anchor="middle" font-family="Caveat, 'Bradley Hand', cursive" font-size="34" font-weight="600" transform="rotate(0 358 284)">ingest</text>
+<text x="565" y="154" fill="#111111" text-anchor="middle" font-family="Caveat, 'Bradley Hand', cursive" font-size="34" font-weight="600" transform="rotate(0 565 154)">check access</text>
+<text x="1035" y="154" fill="#111111" text-anchor="middle" font-family="Caveat, 'Bradley Hand', cursive" font-size="34" font-weight="600" transform="rotate(0 1035 154)">clean text</text>
+<text x="1242" y="284" fill="#111111" text-anchor="middle" font-family="Caveat, 'Bradley Hand', cursive" font-size="34" font-weight="600" transform="rotate(0 1242 284)">human ok</text>
+<text x="1226" y="690" fill="#111111" text-anchor="middle" font-family="Caveat, 'Bradley Hand', cursive" font-size="34" font-weight="600" transform="rotate(0 1226 690)">eval</text>
+<path d="M880 210 C930 196 960 200 990 214" fill="none" stroke="#F07A1A" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-orange)"/>
+<path d="M1330 330 C1360 390 1350 470 1300 560" fill="none" stroke="#F07A1A" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-orange)"/>
+<path d="M1120 760 C1040 790 960 800 880 796" fill="none" stroke="#F07A1A" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-orange)"/>
+<text x="470" y="80" fill="#E5322D" font-family="Caveat, 'Bradley Hand', cursive" font-size="44" font-weight="600" transform="rotate(-3 470 80)">unsure? deny.</text>
+<text x="980" y="560" fill="#2F6FDF" font-family="Caveat, 'Bradley Hand', cursive" font-size="38" font-weight="600" transform="rotate(-2 980 560)">every decision,</text>
+<text x="990" y="600" fill="#2F6FDF" font-family="Caveat, 'Bradley Hand', cursive" font-size="38" font-weight="600" transform="rotate(-2 990 600)">written down</text>
+<path d="M970 574 C946 560 930 540 918 520" fill="none" stroke="#2F6FDF" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-blue)"/>
+
+</svg>

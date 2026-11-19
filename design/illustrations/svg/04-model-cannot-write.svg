@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+<defs>
+  <filter id="wobble" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.032" numOctaves="2" seed="7" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="3.5"/>
+  </filter>
+  <filter id="wobble-soft" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="1" seed="3" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="1.6"/>
+  </filter>
+  <marker id="arrow-orange" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse">
+    <path d="M1 1 L10 6 L1 11" fill="none" stroke="#F07A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+  <marker id="arrow-red" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="11" markerHeight="11" orient="auto">
+    <path d="M1 1 L10 6 L1 11" fill="none" stroke="#E5322D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+  <marker id="arrow-blue" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="11" markerHeight="11" orient="auto">
+    <path d="M1 1 L10 6 L1 11" fill="none" stroke="#2F6FDF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+<rect width="1600" height="900" fill="#ffffff"/>
+
+<g filter="url(#wobble)">
+  <!-- model box with a pen taped to its side -->
+  <path d="M170 360 L410 360 L410 560 L170 560 Z" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/>
+  <circle cx="240" cy="430" r="9" fill="#111111"/><circle cx="330" cy="430" r="9" fill="#111111"/>
+  <path d="M250 486 L320 486" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M420 330 L440 590 L428 610 L416 592 Z" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/>
+  <path d="M396 400 L470 430 M396 430 L470 400 M394 500 L468 530 M394 530 L468 500" stroke="#E5322D" stroke-width="5" stroke-linecap="round"/>
+  <!-- proposal paper carried by the creature -->
+  <path d="M740 380 L880 370 L888 470 L748 480 Z" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/>
+  <path d="M760 400 L860 394 M762 420 L846 415 M764 440 L852 435" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- a person's hand from the right, holding a stamp -->
+  <path d="M1600 300 L1380 330 C1350 334 1340 360 1360 372 L1440 380 L1452 420 C1456 440 1440 452 1420 446" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/>
+  <path d="M1350 380 L1330 470 L1450 476 L1460 390" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/>
+  <path d="M1310 470 L1480 478 L1478 520 L1306 512 Z" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/>
+  <!-- the approved paper under the stamp -->
+  <path d="M1250 600 L1520 590 L1530 760 L1258 770 Z" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/>
+</g>
+<g transform="translate(820 610) rotate(-4) scale(1)">
+    <path d="M-14 -12 L-18 0 M14 -12 L16 0" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M-18 0 L-28 2 M16 0 L26 2" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M-30 -100 L-60 -160 L-70 -180" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M30 -104 L58 -160 L64 -176" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M-38 -40 C-46 -110 -30 -168 6 -170 C44 -172 52 -112 46 -52 C42 -18 22 -8 2 -8 C-22 -8 -34 -18 -38 -40 Z" fill="#111111"/>
+    <circle cx="-8" cy="-128" r="5.5" fill="#fff"/>
+    <circle cx="14" cy="-128" r="5.5" fill="#fff"/>
+    
+  </g>
+<text x="290" y="610" fill="#111111" text-anchor="middle" font-family="Caveat, 'Bradley Hand', cursive" font-size="34" font-weight="600" transform="rotate(0 290 610)">the model</text>
+<text x="816" y="352" fill="#111111" text-anchor="middle" font-family="Caveat, 'Bradley Hand', cursive" font-size="30" font-weight="600" transform="rotate(-3 816 352)">proposal</text>
+<g transform="rotate(-6 1390 690)"><rect x="1300" y="650" width="190" height="74" rx="6" fill="none" stroke="#E5322D" stroke-width="4"/><text x="1316" y="700" fill="#E5322D" font-family="Caveat, 'Bradley Hand', cursive" font-size="46" font-weight="600" transform="rotate(0 1316 700)">OK #a3f9</text></g>
+<text x="180" y="300" fill="#E5322D" font-family="Caveat, 'Bradley Hand', cursive" font-size="50" font-weight="600" transform="rotate(-3 180 300)">can't write</text>
+<path d="M330 306 C380 300 410 320 424 346" fill="none" stroke="#E5322D" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-red)"/>
+<path d="M520 470 C600 440 660 430 720 430" fill="none" stroke="#F07A1A" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-orange)"/>
+<path d="M910 430 C1040 420 1140 470 1240 600" fill="none" stroke="#F07A1A" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-orange)"/>
+<text x="950" y="260" fill="#2F6FDF" font-family="Caveat, 'Bradley Hand', cursive" font-size="40" font-weight="600" transform="rotate(-2 950 260)">a person approves</text>
+<text x="950" y="300" fill="#2F6FDF" font-family="Caveat, 'Bradley Hand', cursive" font-size="40" font-weight="600" transform="rotate(-2 950 300)">the exact payload</text>
+
+</svg>

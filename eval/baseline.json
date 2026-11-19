@@ -1,0 +1,11 @@
+{
+  "date": "2026-11-14",
+  "commit": "4773ca2",
+  "heldoutCorpus": "heldout-v2",
+  "metrics": {
+    "availability": 1,
+    "heldoutTpr": 0.3,
+    "seenFpr": 0,
+    "heldoutFpr": 0
+  }
+}

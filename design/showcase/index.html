@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1920">
+<title>Gina RAG Security Gate</title>
+<!--
+  Showcase screen: Gina RAG x Salesforce Agentforce Security Gate.
+  Every decision and latency comes from `scripts/live-check.ts` (sf CLI transport,
+  2026-11-14) except the split-field injection case, which is from the offline suite.
+  Capture: node design/showcase/capture.mjs
+-->
+<style>
+  :root {
+    --bg: #0F172A;
+    --surface: #131D33;
+    --surface-2: #0F182C;
+    --line: #2B3A55;
+    --ink: #F1F5F9;
+    --text: #CBD5E1;
+    --muted: #8C9AB3;
+    --allow: #A3E635;
+    --allow-bg: rgba(163, 230, 53, 0.10);
+    --deny: #F87171;
+    --deny-soft: #FCA5A5;
+    --deny-bg: rgba(248, 113, 113, 0.10);
+    --amber: #FBBF24;
+    --cyan: #7DD3FC;
+    --sans: "Plus Jakarta Sans", "Inter", "Helvetica Neue", Arial, sans-serif;
+    --mono: "JetBrains Mono", "SF Mono", Menlo, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1920px; height: 1200px; background: var(--bg); color: var(--text); font-family: var(--sans); }
+  body {
+    background-image:
+      linear-gradient(#1A2540 1px, transparent 1px),
+      linear-gradient(90deg, #1A2540 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: -1px -1px;
+    overflow: hidden;
+    font-variant-numeric: tabular-nums;
+  }
+  .mono { font-family: var(--mono); }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; }
+  .eyebrow { font: 600 12px/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+
+  /* header */
+  header {
+    position: absolute; left: 32px; right: 32px; top: 24px; height: 72px;
+    display: flex; align-items: center; gap: 24px; padding: 0 24px;
+  }
+  .brand { display: flex; align-items: center; gap: 14px; }
+  .brand svg { flex: none; }
+  .brand h1 { font: 800 24px/1.1 var(--sans); color: var(--ink); letter-spacing: -0.01em; white-space: nowrap; }
+  .brand h1 span { color: var(--muted); font-weight: 500; }
+  .org { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 14px;
+    border: 1px solid var(--line); border-radius: 999px; background: var(--surface-2);
+    font: 500 13px/1 var(--mono); color: var(--text); white-space: nowrap;
+  }
+  .pill b { color: var(--ink); font-weight: 600; }
+  .pill.live { border-color: rgba(163,230,53,.5); color: var(--allow); }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--allow); box-shadow: 0 0 0 3px rgba(163,230,53,.18); }
+
+  /* hero */
+  .hero { position: absolute; left: 32px; top: 120px; width: 520px; height: 700px; overflow: hidden; background: #131C2E; }
+  .hero img { position: absolute; left: 36px; top: 4px; width: 448px; height: 560px; object-fit: cover;
+    -webkit-mask-image: radial-gradient(ellipse 52% 56% at 50% 50%, #000 62%, transparent 100%);
+    mask-image: radial-gradient(ellipse 52% 56% at 50% 50%, #000 62%, transparent 100%); }
+  .hero .cap {
+    position: absolute; left: 0; right: 0; bottom: 0; padding: 24px;
+    background: linear-gradient(180deg, rgba(19,29,51,0) 0%, rgba(19,29,51,.94) 30%);
+  }
+  .hero .cap h2 { font: 800 27px/1.15 var(--sans); color: var(--ink); letter-spacing: -0.015em; margin-top: 10px; text-wrap: balance; }
+  .hero .cap p { font: 400 15px/1.5 var(--sans); color: var(--text); margin-top: 10px; }
+  .hero .tag { position: absolute; top: 18px; left: 18px; }
+
+  /* injection card */
+  .inj { position: absolute; left: 32px; top: 844px; width: 520px; height: 332px; padding: 22px 24px; }
+  .inj h3, .panel h3 { font: 700 18px/1.2 var(--sans); color: var(--ink); }
+  .inj .sub { font: 400 13px/1.45 var(--sans); color: var(--muted); margin-top: 6px; }
+  .bar-row { display: grid; grid-template-columns: 158px 1fr 92px; align-items: center; gap: 12px; margin-top: 18px; }
+  .bar-row .name { font: 500 14px/1.2 var(--sans); color: var(--text); }
+  .bar { position: relative; height: 12px; border-radius: 6px; background: #1E293B; }
+  .bar i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 6px; background: var(--allow); }
+  .bar i.range { border-radius: 0; opacity: .4; }
+  .bar i.gray { background: var(--muted); }
+  .bar .tick { position: absolute; top: -4px; bottom: -4px; width: 2px; background: var(--ink); }
+  .bar-row .val { font: 600 14px/1 var(--mono); color: var(--ink); text-align: right; }
+  .inj .foot { margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--line); font: 400 13px/1.5 var(--sans); color: var(--muted); }
+  .inj .foot b { color: var(--text); font-weight: 600; }
+
+  /* gate panel */
+  .panel { position: absolute; padding: 22px 24px; }
+  .gate { left: 576px; top: 120px; width: 1312px; height: 556px; }
+  .panel-head { display: flex; align-items: baseline; gap: 14px; }
+  .panel-head .eyebrow { margin-left: auto; }
+  .flow { display: flex; gap: 6px; align-items: center; margin-top: 14px; flex-wrap: nowrap; }
+  .step { font: 600 12px/1 var(--mono); color: var(--allow); border: 1px solid rgba(163,230,53,.45); border-radius: 6px; padding: 7px 9px; white-space: nowrap; background: var(--allow-bg); }
+  .step.t { color: var(--cyan); border-color: rgba(125,211,252,.45); background: rgba(125,211,252,.08); }
+  .flow .arr { color: var(--muted); font: 500 13px/1 var(--mono); }
+  table { width: 100%; border-collapse: collapse; margin-top: 18px; }
+  th { text-align: left; font: 600 11.5px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding: 0 12px 10px; border-bottom: 1px solid var(--line); }
+  td { padding: 0 12px; height: 64px; border-bottom: 1px solid #1F2B44; vertical-align: middle; }
+  tr:last-child td { border-bottom: 0; }
+  .req { font: 600 15px/1.3 var(--sans); color: var(--ink); }
+  .req small { display: block; font: 400 13px/1.35 var(--sans); color: var(--muted); margin-top: 3px; }
+  .fields { display: flex; gap: 6px; flex-wrap: wrap; }
+  .f { font: 500 12.5px/1 var(--mono); padding: 6px 8px; border-radius: 6px; border: 1px solid var(--line); color: var(--text); background: var(--surface-2); white-space: nowrap; }
+  .f.bad { border-color: rgba(248,113,113,.55); color: var(--deny-soft); }
+  .badge { display: inline-flex; align-items: center; gap: 7px; font: 700 12.5px/1 var(--mono); letter-spacing: .06em; padding: 7px 11px; border-radius: 999px; white-space: nowrap; }
+  .badge.allow { color: var(--bg); background: var(--allow); }
+  .badge.deny { color: var(--deny); background: var(--deny-bg); border: 1px solid rgba(248,113,113,.6); }
+  .rd { font: 500 14px/1.35 var(--mono); color: var(--text); white-space: nowrap; }
+  .rd .r { color: var(--deny); font-weight: 600; }
+  .rd .r.ok { color: var(--allow); }
+  .lat { font: 600 14px/1 var(--mono); color: var(--ink); text-align: right; white-space: nowrap; }
+  .lat small { display: block; font: 500 11.5px/1.2 var(--mono); color: var(--muted); margin-top: 5px; }
+  .src { font: 600 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; padding: 5px 7px; border-radius: 5px; white-space: nowrap; }
+  .src.live { color: var(--allow); border: 1px solid rgba(163,230,53,.4); }
+  .src.off { color: var(--amber); border: 1px dashed rgba(251,191,36,.6); }
+
+  /* terminal */
+  .term { left: 576px; top: 852px; width: 1312px; height: 324px; padding: 0; overflow: hidden; background: #0B1222; }
+  .term-bar { display: flex; align-items: center; gap: 8px; height: 46px; padding: 0 18px; border-bottom: 1px solid var(--line); background: var(--surface); }
+  .term-bar i { width: 11px; height: 11px; border-radius: 50%; background: #334155; }
+  .term-bar .t { margin-left: 10px; font: 600 13px/1 var(--mono); color: var(--text); }
+  .term-bar .eyebrow { margin-left: auto; }
+  pre { font: 400 13.5px/1.58 var(--mono); padding: 12px 20px; color: var(--text); white-space: pre; }
+  .k { color: var(--muted); }
+  .va { color: var(--allow); }
+  .vd { color: var(--deny); }
+  .vn { color: #E2E8F0; }
+  .cm { color: #64748B; }
+
+  /* telemetry */
+  .tele { left: 576px; top: 692px; width: 1312px; height: 144px; padding: 18px 24px; }
+  .tiles { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin-top: 12px; }
+  .tile { background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; height: 70px; }
+  .tile b { display: block; font: 700 22px/1.1 var(--mono); color: var(--allow); letter-spacing: -0.02em; white-space: nowrap; }
+  .tile span { display: block; font: 400 12.5px/1.35 var(--sans); color: var(--text); margin-top: 6px; white-space: nowrap; }
+  .tele .head { display: flex; align-items: baseline; gap: 16px; } .tele .note { font: 400 12.5px/1.45 var(--sans); color: var(--muted); margin-left: auto; }
+  footer { position: absolute; left: 32px; right: 32px; bottom: 6px; display: none; }
+</style>
+</head>
+<body>
+
+<header class="card">
+  <div class="brand">
+    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>
+    </svg>
+    <h1>Gina RAG <span>×</span> Salesforce Agentforce <span>· Security Gate</span></h1>
+  </div>
+  <div class="org">
+    <span class="pill"><span class="dot"></span><b>minha-org-agentforce</b></span>
+    <span class="pill">Developer Edition</span>
+    <span class="pill">org 00DgK00000cQRt7UAG</span>
+    <span class="pill">API v68.0</span>
+    <span class="pill live">18/18 live checks</span>
+  </div>
+</header>
+
+<section class="card hero">
+  <img src="gina-3d-mecha-render.png" alt="Gina, a lime-armoured robot with a dark spherical core and big white eyes, raising an open palm">
+  <span class="pill tag">Gina · mecha-botanical cyber-guard</span>
+  <div class="cap">
+    <div class="eyebrow" style="color:var(--allow)">Fail closed, always</div>
+    <h2>If she cannot prove you may read it, nobody reads it.</h2>
+    <p>An error, a timeout or an ambiguous permission is a deny. Text served to the model is re-read live from the org, never taken from the index.</p>
+  </div>
+</section>
+
+<section class="card inj">
+  <h3>Prompt injection, measured honestly</h3>
+  <p class="sub">Blind corpus v2: 80 attacks and 80 benign items, written by an agent that never saw the code. Five runs.</p>
+  <div class="bar-row">
+    <span class="name">Patterns alone</span>
+    <span class="bar"><i class="gray" style="width:30%"></i></span>
+    <span class="val">30.0%</span>
+  </div>
+  <div class="bar-row">
+    <span class="name">Patterns + classifier</span>
+    <span class="bar"><i style="width:76.3%"></i><i class="range" style="left:76.3%;width:5%"></i><span class="tick" style="left:calc(80% - 1px)"></span></span>
+    <span class="val">76.3–81.3%</span>
+  </div>
+  <div class="bar-row">
+    <span class="name">Caught in every run</span>
+    <span class="bar"><i style="width:71.3%"></i></span>
+    <span class="val">71.3%</span>
+  </div>
+  <p class="foot">Median <b>80.0%</b> (white tick). False positives <b>0–1.3%</b>. Classifier: <b>qwen2.5:7b</b>, local via Ollama. Detection is a layer, not the barrier: retrieved text never gets tool or write authority.</p>
+</section>
+
+<section class="card panel gate">
+  <div class="panel-head">
+    <h3>Porteira · requests inspected at the gate</h3>
+    <span class="eyebrow">decision / reason / detail</span>
+  </div>
+  <div class="flow">
+    <span class="step">contract v1</span><span class="arr">→</span>
+    <span class="step">verifyAccess: object · FLS · sharing · prefix</span><span class="arr">→</span>
+    <span class="step">live re-read WITH USER_MODE + hash</span><span class="arr">→</span>
+    <span class="step">local sanitizer</span><span class="arr">→</span>
+    <span class="step t">Trust Layer: classifier + PII masking</span><span class="arr">→</span>
+    <span class="step t">LLM</span>
+  </div>
+  <table>
+    <colgroup><col style="width:392px"><col style="width:236px"><col style="width:112px"><col><col style="width:110px"><col style="width:96px"></colgroup>
+    <thead><tr><th>Request</th><th>Fields</th><th>Decision</th><th>Reason / detail</th><th style="text-align:right">Latency</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><div class="req">Restricted user reads an Account<small>permission set grants Account read, Industry only</small></div></td>
+        <td><div class="fields"><span class="f">Name</span><span class="f">Industry</span></div></td>
+        <td><span class="badge allow">ALLOW</span></td>
+        <td><div class="rd"><span class="r ok">allowed</span> / ok</div></td>
+        <td class="lat">4,495 ms</td>
+        <td><span class="src live">live</span></td>
+      </tr>
+      <tr>
+        <td><div class="req">Index row declares a field off the allowlist<small>refused by the contract, before any org call</small></div></td>
+        <td><div class="fields"><span class="f">Name</span><span class="f bad">AnnualRevenue</span></div></td>
+        <td><span class="badge deny">DENY</span></td>
+        <td><div class="rd"><span class="r">fls_denied</span> / undeclared_field</div></td>
+        <td class="lat">0 ms<small>0 queries</small></td>
+        <td><span class="src live">live</span></td>
+      </tr>
+      <tr>
+        <td><div class="req">Restricted user asks for a field hidden by FLS<small>the org answers IsAccessible = false</small></div></td>
+        <td><div class="fields"><span class="f">Name</span><span class="f bad">AnnualRevenue</span></div></td>
+        <td><span class="badge deny">DENY</span></td>
+        <td><div class="rd"><span class="r">fls_denied</span> / field_denied</div></td>
+        <td class="lat">4,611 ms</td>
+        <td><span class="src live">live</span></td>
+      </tr>
+      <tr>
+        <td><div class="req">Restricted user asks for someone else's note<small>private object, record owned by another user</small></div></td>
+        <td><div class="fields"><span class="f bad">Gina_Private_Note__c</span></div></td>
+        <td><span class="badge deny">DENY</span></td>
+        <td><div class="rd"><span class="r">fls_denied</span> / record_denied</div></td>
+        <td class="lat">3,381 ms</td>
+        <td><span class="src live">live</span></td>
+      </tr>
+      <tr>
+        <td><div class="req">CRM changed after ingestion<small>live chunkHash differs from the indexed one</small></div></td>
+        <td><div class="fields"><span class="f">Name</span><span class="f">Industry</span></div></td>
+        <td><span class="badge deny">DENY</span></td>
+        <td><div class="rd"><span class="r">fls_denied</span> / stale_chunk</div></td>
+        <td class="lat">5,680 ms</td>
+        <td><span class="src live">live</span></td>
+      </tr>
+      <tr>
+        <td><div class="req">Instruction split across two fields<small>caught on the joined text of all fields</small></div></td>
+        <td><div class="fields"><span class="f bad">Industry</span><span class="f bad">Name</span></div></td>
+        <td><span class="badge deny">DENY</span></td>
+        <td><div class="rd"><span class="r">injection_detected</span> / embedded_instruction</div></td>
+        <td class="lat">—</td>
+        <td><span class="src off">offline</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="card panel term">
+  <div class="term-bar"><i></i><i></i><i></i><span class="t">audit.log</span><span class="eyebrow">live-check · sf CLI · 2026-11-14</span></div>
+<pre><span class="cm"># one line per decision: no chunk text, no field values. Ids shortened.</span>
+{ <span class="k">decision</span>: <span class="va">"allow"</span>, <span class="k">reason</span>: <span class="va">"allowed"</span>,    <span class="k">detail</span>: <span class="va">"ok"</span>,               <span class="k">userId</span>: <span class="vn">"005gK…xU5QAK"</span>, <span class="k">recordId</span>: <span class="vn">"001gK…EzVQAU"</span>, <span class="k">latencyMs</span>: <span class="vn">4495</span> }
+{ <span class="k">decision</span>: <span class="vd">"deny"</span>,  <span class="k">reason</span>: <span class="vd">"fls_denied"</span>, <span class="k">detail</span>: <span class="vd">"field_denied"</span>,     <span class="k">userId</span>: <span class="vn">"005gK…xU5QAK"</span>, <span class="k">recordId</span>: <span class="vn">"001gK…EzVQAU"</span>, <span class="k">latencyMs</span>: <span class="vn">4611</span> }
+{ <span class="k">decision</span>: <span class="va">"allow"</span>, <span class="k">reason</span>: <span class="va">"allowed"</span>,    <span class="k">detail</span>: <span class="va">"ok"</span>,               <span class="k">userId</span>: <span class="vn">"005gK…xU5QAK"</span>, <span class="k">recordId</span>: <span class="vn">"a00gK…a3hQAD"</span>, <span class="k">latencyMs</span>: <span class="vn">3398</span> }
+{ <span class="k">decision</span>: <span class="vd">"deny"</span>,  <span class="k">reason</span>: <span class="vd">"fls_denied"</span>, <span class="k">detail</span>: <span class="vd">"record_denied"</span>,    <span class="k">userId</span>: <span class="vn">"005gK…xU5QAK"</span>, <span class="k">recordId</span>: <span class="vn">"a00gK…GMrQAP"</span>, <span class="k">latencyMs</span>: <span class="vn">3381</span> }
+{ <span class="k">decision</span>: <span class="va">"allow"</span>, <span class="k">reason</span>: <span class="va">"allowed"</span>,    <span class="k">detail</span>: <span class="va">"ok"</span>,               <span class="k">userId</span>: <span class="vn">"005gK…Y6fQAG"</span>, <span class="k">recordId</span>: <span class="vn">"a00gK…GMrQAP"</span>, <span class="k">latencyMs</span>: <span class="vn">3413</span> }
+{ <span class="k">decision</span>: <span class="vd">"deny"</span>,  <span class="k">reason</span>: <span class="vd">"fls_denied"</span>, <span class="k">detail</span>: <span class="vd">"undeclared_field"</span>, <span class="k">userId</span>: <span class="vn">"005gK…Y6fQAG"</span>, <span class="k">recordId</span>: <span class="vn">"001gK…EzVQAU"</span>, <span class="k">latencyMs</span>: <span class="vn">0</span> }
+{ <span class="k">decision</span>: <span class="vd">"deny"</span>,  <span class="k">reason</span>: <span class="vd">"fls_denied"</span>, <span class="k">detail</span>: <span class="vd">"stale_chunk"</span>,      <span class="k">userId</span>: <span class="vn">"005gK…Y6fQAG"</span>, <span class="k">recordId</span>: <span class="vn">"001gK…EzVQAU"</span>, <span class="k">latencyMs</span>: <span class="vn">5680</span> }
+{ <span class="k">decision</span>: <span class="vd">"deny"</span>,  <span class="k">reason</span>: <span class="vd">"timeout"</span>,    <span class="k">detail</span>: <span class="vd">"timeout"</span>,          <span class="k">userId</span>: <span class="vn">"005gK…Y6fQAG"</span>, <span class="k">recordId</span>: <span class="vn">"001gK…EzVQAU"</span>, <span class="k">latencyMs</span>: <span class="vn">2</span> }
+<span class="cm"># 18/18 live checks matched (incl. approver edit access, read-only)</span></pre>
+</section>
+
+<section class="card panel tele">
+  <div class="head"><h3>Telemetry · 2026-11-14</h3><p class="note">Latency: sf CLI transport, 20 samples per path. Row latencies above are single live runs.</p></div>
+  <div class="tiles">
+    <div class="tile"><b>231/231</b><span>offline tests · tsc clean</span></div>
+    <div class="tile"><b>0 leaks</b><span>36 scenarios · independent oracle</span></div>
+    <div class="tile"><b>57/57</b><span>detail accuracy (pnpm eval)</span></div>
+    <div class="tile"><b>18/18</b><span>live parity · real org</span></div>
+    <div class="tile"><b>2,465 / 3,449</b><span>verifyAccess P50 / P95 ms</span></div>
+    <div class="tile"><b>4,627 / 5,709</b><span>1-chunk read P50 / P95 ms</span></div>
+  </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+<defs>
+  <filter id="wobble" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.032" numOctaves="2" seed="7" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="3.5"/>
+  </filter>
+  <filter id="wobble-soft" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="1" seed="3" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="1.6"/>
+  </filter>
+  <marker id="arrow-orange" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse">
+    <path d="M1 1 L10 6 L1 11" fill="none" stroke="#F07A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+  <marker id="arrow-red" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="11" markerHeight="11" orient="auto">
+    <path d="M1 1 L10 6 L1 11" fill="none" stroke="#E5322D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+  <marker id="arrow-blue" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="11" markerHeight="11" orient="auto">
+    <path d="M1 1 L10 6 L1 11" fill="none" stroke="#2F6FDF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+<rect width="1600" height="900" fill="#ffffff"/>
+
+<g filter="url(#wobble)">
+  <path d="M300 300 L640 300 L640 760 L300 760 Z" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/>
+  <path d="M300 450 L640 450 M300 600 L640 600" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M440 372 L500 372 M440 522 L500 522 M440 672 L500 672" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- top drawer pulled out -->
+  <path d="M300 300 L250 230 L590 230 L640 300" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/>
+  <path d="M250 230 L250 180 L590 180 L590 230" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/>
+  
+    <path d="M300 236 L306 128 L370 132 L364 238" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/>
+    <path d="M322 170 c8 -10 22 -8 24 4 c2 12 -14 18 -20 8 c-4 -8 6 -12 10 -6 M318 182 c4 14 28 14 32 -2" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M316 212 L354 210" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M380 236 L386 128 L450 132 L444 238" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/>
+    <path d="M402 166 c8 -10 22 -8 24 4 c2 12 -14 18 -20 8 c-4 -8 6 -12 10 -6 M398 178 c4 14 28 14 32 -2" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M396 212 L434 210" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M460 236 L466 128 L530 132 L524 238" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/>
+    <path d="M482 170 c8 -10 22 -8 24 4 c2 12 -14 18 -20 8 c-4 -8 6 -12 10 -6 M478 182 c4 14 28 14 32 -2" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M476 212 L514 210" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M540 236 L546 128 L610 132 L604 238" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/>
+    <path d="M562 166 c8 -10 22 -8 24 4 c2 12 -14 18 -20 8 c-4 -8 6 -12 10 -6 M558 178 c4 14 28 14 32 -2" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M556 212 L594 210" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- the CRM box on the right -->
+  <path d="M1180 360 L1420 360 L1420 560 L1180 560 Z" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/>
+  <path d="M1206 400 L1390 400 M1206 440 L1360 440 M1206 480 L1380 480 M1206 520 L1330 520" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- loupe -->
+  <circle cx="574" cy="176" r="58" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M616 216 L662 262" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g transform="translate(730 430) rotate(-10) scale(1)">
+    <path d="M-14 -12 L-18 0 M14 -12 L16 0" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M-18 0 L-28 2 M16 0 L26 2" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <path d="M-38 -40 C-46 -110 -30 -168 6 -170 C44 -172 52 -112 46 -52 C42 -18 22 -8 2 -8 C-22 -8 -34 -18 -38 -40 Z" fill="#111111"/>
+    <circle cx="-8" cy="-128" r="5.5" fill="#fff"/>
+    <circle cx="14" cy="-128" r="5.5" fill="#fff"/>
+    <path d="M-24 -100 L-48 -150 L-64 -166" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M-20 -80 L-44 -128 L-60 -160" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+<text x="1300" y="610" fill="#111111" text-anchor="middle" font-family="Caveat, 'Bradley Hand', cursive" font-size="34" font-weight="600" transform="rotate(0 1300 610)">CRM</text>
+<text x="470" y="820" fill="#111111" text-anchor="middle" font-family="Caveat, 'Bradley Hand', cursive" font-size="34" font-weight="600" transform="rotate(0 470 820)">the index</text>
+<text x="668" y="120" fill="#E5322D" font-family="Caveat, 'Bradley Hand', cursive" font-size="46" font-weight="600" transform="rotate(-3 668 120)">no text in here</text>
+<text x="70" y="120" fill="#2F6FDF" font-family="Caveat, 'Bradley Hand', cursive" font-size="40" font-weight="600" transform="rotate(-4 70 120)">ids +</text>
+<text x="60" y="160" fill="#2F6FDF" font-family="Caveat, 'Bradley Hand', cursive" font-size="40" font-weight="600" transform="rotate(-4 60 160)">a fingerprint</text>
+<path d="M220 170 C250 176 270 170 290 160" fill="none" stroke="#2F6FDF" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-blue)"/>
+<path d="M660 520 C820 600 1000 600 1160 500" fill="none" stroke="#F07A1A" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-orange)"/>
+<text x="820" y="660" fill="#F07A1A" font-family="Caveat, 'Bradley Hand', cursive" font-size="40" font-weight="600" transform="rotate(-2 820 660)">re-read live, every question</text>
+
+</svg>

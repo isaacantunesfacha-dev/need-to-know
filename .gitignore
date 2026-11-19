@@ -1,0 +1,33 @@
+node_modules/
+dist/
+.env
+.env.local
+.DS_Store
+*.log
+.claude/settings.local.json
+# Third-party reference material: kept locally, never published.
+assets/third-party/
+reports/
+# Local runtime state: approvals and the human-written hygiene ledger.
+.gina/
+node_modules/
+# Salesforce CLI local state and downloaded mail: never published.
+salesforce/.sfdx/
+*.eml
+# Third-party visual references (screenshots of other products): kept locally only.
+design/Mapa_inspiração_modelo.png
+design/referencia_fluxo*.png
+design/3d/*.webp
+# Drafts: local only (not published). Review before promoting to docs/.
+docs/drafts/
+design/illustrations/svg/*.html
+# Aligned with gina-training-lab: env files, local agent config, CLI and memory state.
+.env*
+!.env.example
+.claude/*
+!.claude/agents/
+.mcp.json
+.sf/
+.ai-memory.toml
+temp/
+assets/cover/*.html

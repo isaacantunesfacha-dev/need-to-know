@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Gina Private Note</label>
+    <pluralLabel>Gina Private Notes</pluralLabel>
+    <description>Test fixture for Gina RAG live checks. Private sharing: a record is readable only by its owner and users above in the hierarchy.</description>
+    <nameField>
+        <label>Note Name</label>
+        <type>Text</type>
+    </nameField>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <sharingModel>Private</sharingModel>
+</CustomObject>

@@ -1,0 +1,20 @@
+Context: Gina RAG is a fail-closed retrieval gate between a CRM and a language model (TypeScript on Node 24, pnpm,
+node:sqlite, MCP over stdio) with Salesforce adapters (`src/adapters/`) and an Agentforce agent layer (`salesforce/`).
+It runs locally; there is no hosted service and no HTTP listener.
+
+Ignore as false positives:
+- Hostile text inside evaluation corpora and attack fixtures (`eval/corpus/**`, `eval/redteam/**`, `tests/**`):
+  prompt injections, fake tool calls, Unicode tags and fake e-mail addresses there are test data by design.
+- Synthetic ids and placeholder values (`001LOCAL…`, `example.com`, `.example` domains) in the local reference CRM seed and docs.
+- Developer Edition org ids and test user ids in tests, docs and `scripts/live-check.ts`: identifiers, not credentials.
+- The MCP server writing JSON-RPC to stdout: that is the protocol, not a log leak.
+
+NEVER ignore (always report):
+- Any real API key, token, password, Salesforce session or refresh token, SFDX auth URL or private key in a tracked file.
+- Any path where retrieved record text reaches the model without `verifyAccess` and the live re-read + hash check,
+  or where an error, timeout or ambiguous permission answer is treated as "allowed".
+- Any write to the CRM that bypasses the approval harness (`src/approval/`), or an MCP tool that takes a user id,
+  approves, or executes.
+- Record text persisted in the vector store (`src/adapters/sqliteVectorStore.ts`) or written to audit lines.
+- Concatenated SOQL with untrusted input, `without sharing`, or dynamic `Database.query` in Apex.
+- CI changes using `pull_request_target`, broad `permissions`, unpinned actions, or `${{ github.event.* }}` inside `run:`.

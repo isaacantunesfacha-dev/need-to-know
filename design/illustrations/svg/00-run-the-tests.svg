@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+<defs>
+  <filter id="wobble" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.032" numOctaves="2" seed="7" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="3.5"/>
+  </filter>
+  <filter id="wobble-soft" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="1" seed="3" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="1.6"/>
+  </filter>
+  <marker id="arrow-orange" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse">
+    <path d="M1 1 L10 6 L1 11" fill="none" stroke="#F07A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+  <marker id="arrow-red" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="11" markerHeight="11" orient="auto">
+    <path d="M1 1 L10 6 L1 11" fill="none" stroke="#E5322D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+  <marker id="arrow-blue" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="11" markerHeight="11" orient="auto">
+    <path d="M1 1 L10 6 L1 11" fill="none" stroke="#2F6FDF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+<rect width="1600" height="900" fill="#ffffff"/>
+
+<g filter="url(#wobble-soft)">
+  <path d="M230 110 L680 110 L680 410 L230 410 Z" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/>
+      <path d="M230 158 L680 158" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="256" cy="134" r="8" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="282" cy="134" r="8" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="308" cy="134" r="8" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M920 110 L1370 110 L1370 410 L920 410 Z" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/>
+      <path d="M920 158 L1370 158" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M1278 138 L1294 138 M1310 126 L1326 126 L1326 142 L1310 142 Z M1340 126 L1354 142 M1354 126 L1340 142" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- the giant Enter key -->
+  <path d="M660 700 L940 700 L940 800 L660 800 Z" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/>
+  <path d="M676 712 L924 712 L924 784 L676 784 Z" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="250" y="202" fill="#111111" font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="17">% pnpm install --frozen-lockfile</text>
+      <text x="250" y="236" fill="#111111" font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="17">% pnpm test</text>
+      <text x="250" y="288" fill="#111111" font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="21">ℹ tests 313</text>
+      <text x="250" y="322" fill="#111111" font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="21">ℹ pass 313</text>
+      <text x="250" y="356" fill="#E5322D" font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="21">ℹ fail 0</text><text x="940" y="202" fill="#111111" font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="17">$ pnpm install --frozen-lockfile</text>
+      <text x="940" y="236" fill="#111111" font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="17">$ pnpm test</text>
+      <text x="940" y="288" fill="#111111" font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="21">ℹ tests 313</text>
+      <text x="940" y="322" fill="#111111" font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="21">ℹ pass 313</text>
+      <text x="940" y="356" fill="#E5322D" font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="21">ℹ fail 0</text>
+<text x="800" y="762" fill="#111111" text-anchor="middle" font-family="Caveat, 'Bradley Hand', cursive" font-size="40" font-weight="600" transform="rotate(0 800 762)">enter ↵</text>
+<g transform="translate(800 704) rotate(0) scale(0.9)">
+    <path d="M-14 -12 L-18 0 M14 -12 L16 0" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M-18 0 L-28 2 M16 0 L26 2" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <path d="M-38 -40 C-46 -110 -30 -168 6 -170 C44 -172 52 -112 46 -52 C42 -18 22 -8 2 -8 C-22 -8 -34 -18 -38 -40 Z" fill="#111111"/>
+    <circle cx="-8" cy="-128" r="5.5" fill="#fff"/>
+    <circle cx="14" cy="-128" r="5.5" fill="#fff"/>
+    <path d="M-30 -120 L-58 -166" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M30 -120 L58 -166" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+<path d="M760 712 L748 690 M840 712 L852 690" stroke="#111111" stroke-width="2" stroke-linecap="round"/>
+<path d="M700 700 C600 640 480 560 455 424" fill="none" stroke="#F07A1A" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-orange)"/>
+<path d="M900 700 C1000 640 1120 560 1145 424" fill="none" stroke="#F07A1A" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-orange)"/>
+<text x="330" y="144" fill="#111111" text-anchor="start" font-family="Caveat, 'Bradley Hand', cursive" font-size="32" font-weight="600" transform="rotate(0 330 144)">macOS</text>
+<text x="940" y="144" fill="#111111" text-anchor="start" font-family="Caveat, 'Bradley Hand', cursive" font-size="32" font-weight="600" transform="rotate(0 940 144)">Linux</text>
+<text x="150" y="560" fill="#2F6FDF" font-family="Caveat, 'Bradley Hand', cursive" font-size="36" font-weight="600" transform="rotate(-3 150 560)">both measured in CI,</text>
+<text x="150" y="598" fill="#2F6FDF" font-family="Caveat, 'Bradley Hand', cursive" font-size="36" font-weight="600" transform="rotate(-3 150 598)">2026-11-19</text>
+<text x="1060" y="640" fill="#2F6FDF" font-family="Caveat, 'Bradley Hand', cursive" font-size="38" font-weight="600" transform="rotate(-2 1060 640)">no org, no model,</text>
+<text x="1060" y="680" fill="#2F6FDF" font-family="Caveat, 'Bradley Hand', cursive" font-size="38" font-weight="600" transform="rotate(-2 1060 680)">same two commands</text>
+
+</svg>

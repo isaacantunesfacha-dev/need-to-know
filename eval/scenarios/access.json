@@ -1,0 +1,782 @@
+[
+  {
+    "id": "S01",
+    "description": "admin reads an Account",
+    "userId": "005000000000001AAA",
+    "rows": [
+      {
+        "recordId": "001000000000001AAA",
+        "variant": "valid"
+      }
+    ],
+    "expect": [
+      {
+        "recordId": "001000000000001AAA",
+        "detail": "ok"
+      }
+    ]
+  },
+  {
+    "id": "S02",
+    "description": "admin reads an Opportunity",
+    "userId": "005000000000001AAA",
+    "rows": [
+      {
+        "recordId": "006000000000001AAA",
+        "variant": "valid"
+      }
+    ],
+    "expect": [
+      {
+        "recordId": "006000000000001AAA",
+        "detail": "ok"
+      }
+    ]
+  },
+  {
+    "id": "S03",
+    "description": "admin (viewAll) reads a private note owned by admin",
+    "userId": "005000000000001AAA",
+    "rows": [
+      {
+        "recordId": "a00000000000001AAA",
+        "variant": "valid"
+      }
+    ],
+    "expect": [
+      {
+        "recordId": "a00000000000001AAA",
+        "detail": "ok"
+      }
+    ]
+  },
+  {
+    "id": "S04",
+    "description": "restricted reads an Account (Name and Industry granted)",
+    "userId": "005000000000002AAA",
+    "rows": [
+      {
+        "recordId": "001000000000001AAA",
+        "variant": "valid"
+      }
+    ],
+    "expect": [
+      {
+        "recordId": "001000000000001AAA",
+        "detail": "ok"
+      }
+    ]
+  },
+  {
+    "id": "S05",
+    "description": "restricted has no Opportunity read",
+    "userId": "005000000000002AAA",
+    "rows": [
+      {
+        "recordId": "006000000000001AAA",
+        "variant": "valid"
+      }
+    ],
+    "expect": [
+      {
+        "recordId": "006000000000001AAA",
+        "detail": "entity_denied"
+      }
+    ]
+  },
+  {
+    "id": "S06",
+    "description": "restricted reads its own private note",
+    "userId": "005000000000002AAA",
+    "rows": [
+      {
+        "recordId": "a00000000000002AAA",
+        "variant": "valid"
+      }
+    ],
+    "expect": [
+      {
+        "recordId": "a00000000000002AAA",
+        "detail": "ok"
+      }
+    ]
+  },
+  {
+    "id": "S07",
+    "description": "stranger has no object read on Account",
+    "userId": "005000000000003AAA",
+    "rows": [
+      {
+        "recordId": "001000000000001AAA",
+        "variant": "valid"
+      }
+    ],
+    "expect": [
+      {
+        "recordId": "001000000000001AAA",
+        "detail": "entity_denied"
+      }
+    ]
+  },
+  {
+    "id": "S08",
+    "description": "stranger has no object read on Opportunity",
+    "userId": "005000000000003AAA",
+    "rows": [
+      {
+        "recordId": "006000000000001AAA",
+        "variant": "valid"
+      }
+    ],
+    "expect": [
+      {
+        "recordId": "006000000000001AAA",
+        "detail": "entity_denied"
+      }
+    ]
+  },
+  {
+    "id": "S09",
+    "description": "stranger has no object read on the private object",
+    "userId": "005000000000003AAA",
+    "rows": [
+      {
+        "recordId": "a00000000000002AAA",
+        "variant": "valid"
+      }
+    ],
+    "expect": [
+      {
+        "recordId": "a00000000000002AAA",
+        "detail": "entity_denied"
+      }
+    ]
+  },
+  {
+    "id": "S10",
+    "description": "nameonly: Industry is FLS-hidden on the declared field set",
+    "userId": "005000000000004AAA",
+    "rows": [
+      {
+        "recordId": "001000000000001AAA",
+        "variant": "valid"
+      }
+    ],
+    "expect": [
+      {
+        "recordId": "001000000000001AAA",
+        "detail": "field_denied"
+      }
+    ]
+  },
+  {
+    "id": "S11",
+    "description": "nameonly has no Opportunity read",
+    "userId": "005000000000004AAA",
+    "rows": [
+      {
+        "recordId": "006000000000001AAA",
+        "variant": "valid"
+      }
+    ],
+    "expect": [
+      {
+        "recordId": "006000000000001AAA",
+        "detail": "entity_denied"
+      }
+    ]
+  },
+  {
+    "id": "S12",
+    "description": "nameonly has no private object read",
+    "userId": "005000000000004AAA",
+    "rows": [
+      {
+        "recordId": "a00000000000001AAA",
+        "variant": "valid"
+      }
+    ],
+    "expect": [
+      {
+        "recordId": "a00000000000001AAA",
+        "detail": "entity_denied"
+      }
+    ]
+  },
+  {
+    "id": "S13",
+    "description": "restricted: sharing hides the note owned by admin",
+    "userId": "005000000000002AAA",
+    "rows": [
+      {
+        "recordId": "a00000000000001AAA",
+        "variant": "valid"
+      }
+    ],
+    "expect": [
+      {
+        "recordId": "a00000000000001AAA",
+        "detail": "record_denied"
+      }
+    ]
+  },
+  {
+    "id": "S14",
+    "description": "admin viewAll reads the note owned by restricted",
+    "userId": "005000000000001AAA",
+    "rows": [
+      {
+        "recordId": "a00000000000002AAA",
+        "variant": "valid"
+      }
+    ],
+    "expect": [
+      {
+        "recordId": "a00000000000002AAA",
+        "detail": "ok"
+      }
+    ]
+  },
+  {
+    "id": "S15",
+    "description": "restricted reads three Accounts",
+    "userId": "005000000000002AAA",
+    "rows": [
+      {
+        "recordId": "001000000000001AAA",
+        "variant": "valid"
+      },
+      {
+        "recordId": "001000000000002AAA",
+        "variant": "valid"
+      },
+      {
+        "recordId": "001000000000003AAA",
+        "variant": "valid"
+      }
+    ],
+    "expect": [
+      {
+        "recordId": "001000000000001AAA",
+        "detail": "ok"
+      },
+      {
+        "recordId": "001000000000002AAA",
+        "detail": "ok"
+      },
+      {
+        "recordId": "001000000000003AAA",
+        "detail": "ok"
+      }
+    ]
+  },
+  {
+    "id": "S16",
+    "description": "undeclared field in the row is refused by the contract",
+    "userId": "005000000000001AAA",
+    "rows": [
+      {
+        "recordId": "001000000000001AAA",
+        "variant": "undeclared_field"
+      }
+    ],
+    "expect": [
+      {
+        "recordId": "001000000000001AAA",
+        "detail": "undeclared_field"
+      }
+    ]
+  },
+  {
+    "id": "S17",
+    "description": "row from another tenant",
+    "userId": "005000000000001AAA",
+    "rows": [
+      {
+        "recordId": "001000000000002AAA",
+        "variant": "wrong_tenant"
+      }
+    ],
+    "expect": [
+      {
+        "recordId": "001000000000002AAA",
+        "detail": "tenant_mismatch"
+      }
+    ]
+  },
+  {
+    "id": "S18",
+    "description": "row without hygiene audit",
+    "userId": "005000000000001AAA",
+    "rows": [
+      {
+        "recordId": "001000000000003AAA",
+        "variant": "unaudited"
+      }
+    ],
+    "expect": [
+      {
+        "recordId": "001000000000003AAA",
+        "detail": "hygiene_unapproved"
+      }
+    ]
+  },
+  {
+    "id": "S19",
+    "description": "row embedded with an unaccepted model",
+    "userId": "005000000000001AAA",
+    "rows": [
+      {
+        "recordId": "001000000000001AAA",
+        "variant": "wrong_model"
+      }
+    ],
+    "expect": [
+      {
+        "recordId": "001000000000001AAA",
+        "detail": "embedding_model_rejected"
+      }
+    ]
+  },
+  {
+    "id": "S20",
+    "description": "row with schema version 2",
+    "userId": "005000000000001AAA",
+    "rows": [
+      {
+        "recordId": "001000000000001AAA",
+        "variant": "bad_schema"
+      }
+    ],
+    "expect": [
+      {
+        "recordId": "001000000000001AAA",
+        "detail": "schema_mismatch"
+      }
+    ]
+  },
+  {
+    "id": "S21",
+    "description": "CRM changed after ingestion",
+    "userId": "005000000000001AAA",
+    "rows": [
+      {
+        "recordId": "001000000000001AAA",
+        "variant": "stale"
+      }
+    ],
+    "expect": [
+      {
+        "recordId": "001000000000001AAA",
+        "detail": "stale_chunk"
+      }
+    ]
+  },
+  {
+    "id": "S22",
+    "description": "record holds an embedded instruction at ingestion and live",
+    "userId": "005000000000001AAA",
+    "rows": [
+      {
+        "recordId": "001000000000002AAA",
+        "variant": "poisoned_live"
+      }
+    ],
+    "expect": [
+      {
+        "recordId": "001000000000002AAA",
+        "detail": "embedded_instruction"
+      }
+    ]
+  },
+  {
+    "id": "S23",
+    "description": "source answers with an extra column",
+    "userId": "005000000000001AAA",
+    "rows": [
+      {
+        "recordId": "001000000000001AAA",
+        "variant": "source_extra_field"
+      }
+    ],
+    "expect": [
+      {
+        "recordId": "001000000000001AAA",
+        "detail": "source_mismatch"
+      }
+    ]
+  },
+  {
+    "id": "S24",
+    "description": "source throws",
+    "userId": "005000000000001AAA",
+    "rows": [
+      {
+        "recordId": "001000000000001AAA",
+        "variant": "source_throws"
+      }
+    ],
+    "expect": [
+      {
+        "recordId": "001000000000001AAA",
+        "detail": "source_error"
+      }
+    ]
+  },
+  {
+    "id": "S25",
+    "description": "source answers after the deadline",
+    "userId": "005000000000001AAA",
+    "rows": [
+      {
+        "recordId": "001000000000001AAA",
+        "variant": "source_slow"
+      }
+    ],
+    "expect": [
+      {
+        "recordId": "001000000000001AAA",
+        "detail": "timeout"
+      }
+    ]
+  },
+  {
+    "id": "S26",
+    "description": "contract refusal precedes access: stranger + wrong tenant",
+    "userId": "005000000000003AAA",
+    "rows": [
+      {
+        "recordId": "001000000000001AAA",
+        "variant": "wrong_tenant"
+      }
+    ],
+    "expect": [
+      {
+        "recordId": "001000000000001AAA",
+        "detail": "tenant_mismatch"
+      }
+    ]
+  },
+  {
+    "id": "S27",
+    "description": "access precedes live read: stranger + stale row",
+    "userId": "005000000000003AAA",
+    "rows": [
+      {
+        "recordId": "001000000000001AAA",
+        "variant": "stale"
+      }
+    ],
+    "expect": [
+      {
+        "recordId": "001000000000001AAA",
+        "detail": "entity_denied"
+      }
+    ]
+  },
+  {
+    "id": "S28",
+    "description": "restricted + undeclared field",
+    "userId": "005000000000002AAA",
+    "rows": [
+      {
+        "recordId": "001000000000001AAA",
+        "variant": "undeclared_field"
+      }
+    ],
+    "expect": [
+      {
+        "recordId": "001000000000001AAA",
+        "detail": "undeclared_field"
+      }
+    ]
+  },
+  {
+    "id": "S29",
+    "description": "mixed rows for restricted: served and denied",
+    "userId": "005000000000002AAA",
+    "rows": [
+      {
+        "recordId": "001000000000001AAA",
+        "variant": "valid"
+      },
+      {
+        "recordId": "006000000000001AAA",
+        "variant": "valid"
+      },
+      {
+        "recordId": "a00000000000001AAA",
+        "variant": "valid"
+      },
+      {
+        "recordId": "a00000000000002AAA",
+        "variant": "valid"
+      },
+      {
+        "recordId": "001000000000002AAA",
+        "variant": "stale"
+      }
+    ],
+    "expect": [
+      {
+        "recordId": "001000000000001AAA",
+        "detail": "ok"
+      },
+      {
+        "recordId": "006000000000001AAA",
+        "detail": "entity_denied"
+      },
+      {
+        "recordId": "a00000000000001AAA",
+        "detail": "record_denied"
+      },
+      {
+        "recordId": "a00000000000002AAA",
+        "detail": "ok"
+      },
+      {
+        "recordId": "001000000000002AAA",
+        "detail": "stale_chunk"
+      }
+    ]
+  },
+  {
+    "id": "S30",
+    "description": "mixed rows for admin across variants",
+    "userId": "005000000000001AAA",
+    "rows": [
+      {
+        "recordId": "001000000000001AAA",
+        "variant": "valid"
+      },
+      {
+        "recordId": "001000000000002AAA",
+        "variant": "wrong_tenant"
+      },
+      {
+        "recordId": "001000000000003AAA",
+        "variant": "poisoned_live"
+      },
+      {
+        "recordId": "a00000000000001AAA",
+        "variant": "source_slow"
+      },
+      {
+        "recordId": "006000000000001AAA",
+        "variant": "valid"
+      }
+    ],
+    "expect": [
+      {
+        "recordId": "001000000000001AAA",
+        "detail": "ok"
+      },
+      {
+        "recordId": "001000000000002AAA",
+        "detail": "tenant_mismatch"
+      },
+      {
+        "recordId": "001000000000003AAA",
+        "detail": "embedded_instruction"
+      },
+      {
+        "recordId": "a00000000000001AAA",
+        "detail": "timeout"
+      },
+      {
+        "recordId": "006000000000001AAA",
+        "detail": "ok"
+      }
+    ]
+  },
+  {
+    "id": "S31",
+    "description": "the same Account three times",
+    "userId": "005000000000001AAA",
+    "rows": [
+      {
+        "recordId": "001000000000001AAA",
+        "variant": "valid"
+      },
+      {
+        "recordId": "001000000000001AAA",
+        "variant": "valid"
+      },
+      {
+        "recordId": "001000000000001AAA",
+        "variant": "valid"
+      }
+    ],
+    "expect": [
+      {
+        "recordId": "001000000000001AAA",
+        "detail": "ok"
+      },
+      {
+        "recordId": "001000000000001AAA",
+        "detail": "ok"
+      },
+      {
+        "recordId": "001000000000001AAA",
+        "detail": "ok"
+      }
+    ]
+  },
+  {
+    "id": "S32",
+    "description": "duplicates of private notes for restricted",
+    "userId": "005000000000002AAA",
+    "rows": [
+      {
+        "recordId": "a00000000000001AAA",
+        "variant": "valid"
+      },
+      {
+        "recordId": "a00000000000001AAA",
+        "variant": "valid"
+      },
+      {
+        "recordId": "a00000000000002AAA",
+        "variant": "valid"
+      },
+      {
+        "recordId": "a00000000000002AAA",
+        "variant": "valid"
+      }
+    ],
+    "expect": [
+      {
+        "recordId": "a00000000000001AAA",
+        "detail": "record_denied"
+      },
+      {
+        "recordId": "a00000000000001AAA",
+        "detail": "record_denied"
+      },
+      {
+        "recordId": "a00000000000002AAA",
+        "detail": "ok"
+      },
+      {
+        "recordId": "a00000000000002AAA",
+        "detail": "ok"
+      }
+    ]
+  },
+  {
+    "id": "S33",
+    "description": "same record in three variants",
+    "userId": "005000000000001AAA",
+    "rows": [
+      {
+        "recordId": "001000000000001AAA",
+        "variant": "valid"
+      },
+      {
+        "recordId": "001000000000001AAA",
+        "variant": "stale"
+      },
+      {
+        "recordId": "001000000000001AAA",
+        "variant": "unaudited"
+      }
+    ],
+    "expect": [
+      {
+        "recordId": "001000000000001AAA",
+        "detail": "ok"
+      },
+      {
+        "recordId": "001000000000001AAA",
+        "detail": "stale_chunk"
+      },
+      {
+        "recordId": "001000000000001AAA",
+        "detail": "hygiene_unapproved"
+      }
+    ]
+  },
+  {
+    "id": "S34",
+    "description": "nameonly mixed: one Account FLS-denied, one wrong model",
+    "userId": "005000000000004AAA",
+    "rows": [
+      {
+        "recordId": "001000000000001AAA",
+        "variant": "valid"
+      },
+      {
+        "recordId": "001000000000002AAA",
+        "variant": "wrong_model"
+      }
+    ],
+    "expect": [
+      {
+        "recordId": "001000000000001AAA",
+        "detail": "field_denied"
+      },
+      {
+        "recordId": "001000000000002AAA",
+        "detail": "embedding_model_rejected"
+      }
+    ]
+  },
+  {
+    "id": "S35",
+    "description": "stranger sees nothing across every object",
+    "userId": "005000000000003AAA",
+    "rows": [
+      {
+        "recordId": "001000000000001AAA",
+        "variant": "valid"
+      },
+      {
+        "recordId": "006000000000001AAA",
+        "variant": "valid"
+      },
+      {
+        "recordId": "a00000000000001AAA",
+        "variant": "valid"
+      },
+      {
+        "recordId": "a00000000000002AAA",
+        "variant": "valid"
+      }
+    ],
+    "expect": [
+      {
+        "recordId": "001000000000001AAA",
+        "detail": "entity_denied"
+      },
+      {
+        "recordId": "006000000000001AAA",
+        "detail": "entity_denied"
+      },
+      {
+        "recordId": "a00000000000001AAA",
+        "detail": "entity_denied"
+      },
+      {
+        "recordId": "a00000000000002AAA",
+        "detail": "entity_denied"
+      }
+    ]
+  },
+  {
+    "id": "S36",
+    "description": "restricted + source throws on an allowed Account",
+    "userId": "005000000000002AAA",
+    "rows": [
+      {
+        "recordId": "001000000000003AAA",
+        "variant": "source_throws"
+      }
+    ],
+    "expect": [
+      {
+        "recordId": "001000000000003AAA",
+        "detail": "source_error"
+      }
+    ]
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "N01",
+    "lang": "pt",
+    "category": "from_tests",
+    "text": "Cliente comprou 3 vezes em 30, 30 e 46 dias. Ritmo observado: 30 dias."
+  },
+  {
+    "id": "N02",
+    "lang": "en",
+    "category": "from_tests",
+    "text": "Edge Communications renewed its contract in Q3; the previous owner was Ana."
+  },
+  {
+    "id": "N03",
+    "lang": "en",
+    "category": "from_tests",
+    "text": "Great call 👍🏽 with the buyer. Next step: send the proposal on Monday."
+  },
+  {
+    "id": "N04",
+    "lang": "pt",
+    "category": "from_tests",
+    "text": "Política de devolução: 7 dias corridos a partir da entrega. Preço < R$ 100 tem frete pago."
+  },
+  {
+    "id": "N05",
+    "lang": "en",
+    "category": "from_tests",
+    "text": "<p>Hello <b>world</b></p>"
+  }
+]

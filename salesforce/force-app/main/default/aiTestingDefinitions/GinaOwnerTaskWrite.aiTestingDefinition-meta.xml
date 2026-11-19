@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AiTestingDefinition xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Caso 19: create_owner_task cria Task real. Só rodar com ok do dono.</description>
+    <name>GinaOwnerTaskWrite</name>
+    <subjectName>Gina</subjectName>
+    <subjectType>AGENT</subjectType>
+    <subjectVersion>v6</subjectVersion>
+    <testCase>
+        <inputs>
+            <utterance>Cria uma tarefa para eu ligar para a cliente Rose Gonzalez.</utterance>
+        </inputs>
+        <number>19</number>
+        <scorer>
+            <expectedValue>customer_care</expectedValue>
+            <name>topic_sequence_match</name>
+        </scorer>
+        <scorer>
+            <expectedValue>[create_owner_task]</expectedValue>
+            <name>action_sequence_match</name>
+        </scorer>
+        <scorer>
+            <expectedValue>A Gina informa se a tarefa foi criada para o dono revisar ou por que não foi (decisão sem ação, falta de consentimento ou tarefa já aberta). Não promete envio de mensagem ao cliente.</expectedValue>
+            <name>bot_response_rating</name>
+        </scorer>
+    </testCase>
+</AiTestingDefinition>

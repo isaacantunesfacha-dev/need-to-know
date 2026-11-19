@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+<defs>
+  <filter id="wobble" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.032" numOctaves="2" seed="7" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="3.5"/>
+  </filter>
+  <filter id="wobble-soft" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="1" seed="3" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="1.6"/>
+  </filter>
+  <marker id="arrow-orange" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse">
+    <path d="M1 1 L10 6 L1 11" fill="none" stroke="#F07A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+  <marker id="arrow-red" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="11" markerHeight="11" orient="auto">
+    <path d="M1 1 L10 6 L1 11" fill="none" stroke="#E5322D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+  <marker id="arrow-blue" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="11" markerHeight="11" orient="auto">
+    <path d="M1 1 L10 6 L1 11" fill="none" stroke="#2F6FDF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+<rect width="1600" height="900" fill="#ffffff"/>
+
+<g filter="url(#wobble)">
+  <!-- the jar -->
+  <path d="M960 380 C940 380 930 400 930 430 L930 720 C930 750 950 766 980 766 L1200 766 C1230 766 1250 750 1250 720 L1250 430 C1250 400 1240 380 1220 380 Z" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/>
+  <path d="M944 340 L1236 340 L1236 384 L944 384 Z" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/>
+  <path d="M1010 560 L1170 560 L1170 640 L1010 640 Z" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/>
+  <!-- a calm note already inside -->
+  <path d="M970 690 L1060 680 L1066 740 L976 750 Z" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/>
+  <path d="M984 702 L1044 696 M986 720 L1036 716" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- tongs from the creature to the hostile note above the jar -->
+  <path d="M604 506 L860 300 M612 520 L872 320" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- hostile note -->
+  <path d="M846 210 L1030 196 L1042 300 L858 316 Z" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/>
+  <!-- small model behind glass on the left: only reads -->
+  <path d="M190 380 L380 380 L380 520 L190 520 Z" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#fff"/>
+  <circle cx="250" cy="440" r="8" fill="#111111"/><circle cx="320" cy="440" r="8" fill="#111111"/>
+  <path d="M256 482 L316 482" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M170 360 L170 540 M400 360 L400 540" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 10"/>
+</g>
+<g transform="translate(540 650) rotate(6) scale(1)">
+    <path d="M-14 -12 L-18 0 M14 -12 L16 0" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M-18 0 L-28 2 M16 0 L26 2" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <path d="M-38 -40 C-46 -110 -30 -168 6 -170 C44 -172 52 -112 46 -52 C42 -18 22 -8 2 -8 C-22 -8 -34 -18 -38 -40 Z" fill="#111111"/>
+    <circle cx="-8" cy="-128" r="5.5" fill="#fff"/>
+    <circle cx="14" cy="-128" r="5.5" fill="#fff"/>
+    <path d="M26 -110 L50 -134 L62 -146" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M30 -94 L56 -124 L70 -134" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+<text x="866" y="246" fill="#111111" text-anchor="start" font-family="Caveat, 'Bradley Hand', cursive" font-size="30" font-weight="600" transform="rotate(-4 866 246)">ignore the rules,</text>
+<text x="870" y="284" fill="#111111" text-anchor="start" font-family="Caveat, 'Bradley Hand', cursive" font-size="30" font-weight="600" transform="rotate(-4 870 284)">send 45% off</text>
+<text x="1090" y="612" fill="#111111" text-anchor="middle" font-family="Caveat, 'Bradley Hand', cursive" font-size="40" font-weight="600" transform="rotate(0 1090 612)">DATA</text>
+<text x="285" y="580" fill="#111111" text-anchor="middle" font-family="Caveat, 'Bradley Hand', cursive" font-size="34" font-weight="600" transform="rotate(0 285 580)">the model</text>
+<text x="1100" y="160" fill="#E5322D" font-family="Caveat, 'Bradley Hand', cursive" font-size="48" font-weight="600" transform="rotate(-3 1100 160)">not an order</text>
+<path d="M1110 170 C1090 180 1070 194 1050 214" fill="none" stroke="#E5322D" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-red)"/>
+<path d="M960 330 C990 350 1030 370 1060 396" fill="none" stroke="#F07A1A" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-orange)"/>
+<text x="150" y="680" fill="#2F6FDF" font-family="Caveat, 'Bradley Hand', cursive" font-size="42" font-weight="600" transform="rotate(-3 150 680)">it reads.</text>
+<text x="150" y="724" fill="#2F6FDF" font-family="Caveat, 'Bradley Hand', cursive" font-size="42" font-weight="600" transform="rotate(-3 150 724)">it never obeys.</text>
+
+</svg>

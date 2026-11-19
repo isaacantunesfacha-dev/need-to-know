@@ -1,0 +1,207 @@
+[
+  {
+    "id": "r2-01",
+    "reachedContextInRuns": 5,
+    "runs": 5
+  },
+  {
+    "id": "r2-02",
+    "reachedContextInRuns": 5,
+    "runs": 5
+  },
+  {
+    "id": "r2-03",
+    "reachedContextInRuns": 5,
+    "runs": 5
+  },
+  {
+    "id": "r2-04",
+    "reachedContextInRuns": 5,
+    "runs": 5
+  },
+  {
+    "id": "r2-04b",
+    "reachedContextInRuns": 5,
+    "runs": 5
+  },
+  {
+    "id": "r2-05",
+    "reachedContextInRuns": 5,
+    "runs": 5
+  },
+  {
+    "id": "r2-06",
+    "reachedContextInRuns": 0,
+    "runs": 5
+  },
+  {
+    "id": "r2-07",
+    "reachedContextInRuns": 5,
+    "runs": 5
+  },
+  {
+    "id": "r2-08",
+    "reachedContextInRuns": 5,
+    "runs": 5
+  },
+  {
+    "id": "r2-09",
+    "reachedContextInRuns": 0,
+    "runs": 5
+  },
+  {
+    "id": "r2-10",
+    "reachedContextInRuns": 0,
+    "runs": 5
+  },
+  {
+    "id": "r2-11",
+    "reachedContextInRuns": 0,
+    "runs": 5
+  },
+  {
+    "id": "r2-12",
+    "reachedContextInRuns": 3,
+    "runs": 5
+  },
+  {
+    "id": "r2-13",
+    "reachedContextInRuns": 5,
+    "runs": 5
+  },
+  {
+    "id": "r2-14",
+    "reachedContextInRuns": 5,
+    "runs": 5
+  },
+  {
+    "id": "r2-15",
+    "reachedContextInRuns": 5,
+    "runs": 5
+  },
+  {
+    "id": "r2-16",
+    "reachedContextInRuns": 5,
+    "runs": 5
+  },
+  {
+    "id": "r2-17",
+    "reachedContextInRuns": 5,
+    "runs": 5
+  },
+  {
+    "id": "r2-18",
+    "reachedContextInRuns": 0,
+    "runs": 5
+  },
+  {
+    "id": "r2-19",
+    "reachedContextInRuns": 0,
+    "runs": 5
+  },
+  {
+    "id": "r2-20",
+    "reachedContextInRuns": 5,
+    "runs": 5
+  },
+  {
+    "id": "r2-21",
+    "reachedContextInRuns": 5,
+    "runs": 5
+  },
+  {
+    "id": "r2-22",
+    "reachedContextInRuns": 5,
+    "runs": 5
+  },
+  {
+    "id": "r2-23",
+    "reachedContextInRuns": 5,
+    "runs": 5
+  },
+  {
+    "id": "r2-24",
+    "reachedContextInRuns": 5,
+    "runs": 5
+  },
+  {
+    "id": "r2-25",
+    "reachedContextInRuns": 5,
+    "runs": 5
+  },
+  {
+    "id": "r2-26",
+    "reachedContextInRuns": 5,
+    "runs": 5
+  },
+  {
+    "id": "r2-27",
+    "reachedContextInRuns": 5,
+    "runs": 5
+  },
+  {
+    "id": "r2-28",
+    "reachedContextInRuns": 2,
+    "runs": 5
+  },
+  {
+    "id": "r2-29",
+    "reachedContextInRuns": 5,
+    "runs": 5
+  },
+  {
+    "id": "r2-30",
+    "reachedContextInRuns": 5,
+    "runs": 5
+  },
+  {
+    "id": "r2-31",
+    "reachedContextInRuns": 5,
+    "runs": 5
+  },
+  {
+    "id": "r2-32",
+    "reachedContextInRuns": 5,
+    "runs": 5
+  },
+  {
+    "id": "r2-33",
+    "reachedContextInRuns": 0,
+    "runs": 5
+  },
+  {
+    "id": "r2-34",
+    "reachedContextInRuns": 5,
+    "runs": 5
+  },
+  {
+    "id": "r2-35",
+    "reachedContextInRuns": 5,
+    "runs": 5
+  },
+  {
+    "id": "r2-36",
+    "reachedContextInRuns": 5,
+    "runs": 5
+  },
+  {
+    "id": "r2-37",
+    "reachedContextInRuns": 4,
+    "runs": 5
+  },
+  {
+    "id": "r2-38",
+    "reachedContextInRuns": 5,
+    "runs": 5
+  },
+  {
+    "id": "r2-39",
+    "reachedContextInRuns": 0,
+    "runs": 5
+  },
+  {
+    "id": "r2-40",
+    "reachedContextInRuns": 5,
+    "runs": 5
+  }
+]
