@@ -36,7 +36,7 @@ Monitoradas continuamente contra a linha de base congelada em `eval/baseline.jso
 
 ### 4. Execução Offline e Isolamento do Oráculo
 - O oráculo de avaliação (`src/eval/oracle.ts`) não importa nenhuma função de `src/retrieval/`, prevenindo conascência de implementação e viés compartilhado.
-- A suíte de testes adversariais e de fronteira (313 em 2026-11-19) (`pnpm test:adversarial`) roda 100% em memória, sem dependência de rede, completando a execução em menos de 1 segundo.
+- A suíte de testes adversariais e de fronteira (316 em 2026-11-19) (`pnpm test:adversarial`) roda 100% em memória, sem dependência de rede, completando a execução em menos de 1 segundo.
 
 ## Consequências
 - **Positivas:**

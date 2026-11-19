@@ -30,12 +30,12 @@
 </g>
 <text x="250" y="202" fill="#111111" font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="17">% pnpm install --frozen-lockfile</text>
       <text x="250" y="236" fill="#111111" font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="17">% pnpm test</text>
-      <text x="250" y="288" fill="#111111" font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="21">ℹ tests 313</text>
-      <text x="250" y="322" fill="#111111" font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="21">ℹ pass 313</text>
+      <text x="250" y="288" fill="#111111" font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="21">ℹ tests 316</text>
+      <text x="250" y="322" fill="#111111" font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="21">ℹ pass 316</text>
       <text x="250" y="356" fill="#E5322D" font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="21">ℹ fail 0</text><text x="940" y="202" fill="#111111" font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="17">$ pnpm install --frozen-lockfile</text>
       <text x="940" y="236" fill="#111111" font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="17">$ pnpm test</text>
-      <text x="940" y="288" fill="#111111" font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="21">ℹ tests 313</text>
-      <text x="940" y="322" fill="#111111" font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="21">ℹ pass 313</text>
+      <text x="940" y="288" fill="#111111" font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="21">ℹ tests 316</text>
+      <text x="940" y="322" fill="#111111" font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="21">ℹ pass 316</text>
       <text x="940" y="356" fill="#E5322D" font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="21">ℹ fail 0</text>
 <text x="800" y="762" fill="#111111" text-anchor="middle" font-family="Caveat, 'Bradley Hand', cursive" font-size="40" font-weight="600" transform="rotate(0 800 762)">enter ↵</text>
 <g transform="translate(800 704) rotate(0) scale(0.9)">

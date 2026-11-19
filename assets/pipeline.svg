@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1263 506" width="1263" height="506" role="img" aria-labelledby="t d">
+<title id="t">need-to-know retrieval pipeline</title>
+<desc id="d">A question flows left to right through retrieve, contract v1, access check, live re-read, sanitize and Trust Layer to the LLM. Every stage except the LLM can deny, and each denial drops down with its audit reason and detail code.</desc>
+<style>
+  .label { font: 600 16px system-ui, -apple-system, "Segoe UI", sans-serif; fill: #1f2328; }
+  .sub { font: 400 13px system-ui, -apple-system, "Segoe UI", sans-serif; fill: #59636e; }
+  .mono, .code, .reason { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  .sub.mono { font-size: 14px; }
+  .code { font-size: 12px; fill: #59636e; }
+  .reason { font-size: 12px; font-weight: 700; fill: #cf222e; }
+  .cap { font: 600 14px system-ui, -apple-system, "Segoe UI", sans-serif; fill: #1f2328; }
+  .cap.deny-cap { fill: #cf222e; }
+  .legend { font: 400 14px system-ui, -apple-system, "Segoe UI", sans-serif; fill: #59636e; }
+  .legend tspan.n { font-weight: 700; fill: #1f2328; }
+  .box { fill: none; stroke: #1f2328; stroke-width: 1.5; }
+  .box.contract { stroke: #59636e; stroke-dasharray: 5 4; }
+  .flow { fill: none; stroke: #1f2328; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .deny { fill: none; stroke: #cf222e; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  @media (prefers-color-scheme: dark) {
+    .label, .cap, .legend tspan.n { fill: #f0f6fc; }
+    .sub, .code, .legend { fill: #9198a1; }
+    .reason, .cap.deny-cap { fill: #ff7b72; }
+    .box, .flow { stroke: #f0f6fc; }
+    .box.contract { stroke: #9198a1; }
+    .deny { stroke: #ff7b72; }
+  }
+</style>
+<text class="cap" x="20" y="40">→ happy path: every boundary said yes</text>
+<text class="cap deny-cap" x="20" y="64">↓ any boundary can say no, and the audit log records why</text>
+<text class="sub" x="20" y="122">question</text>
+<text class="sub" x="1243" y="156" text-anchor="end">answer</text>
+<path class="flow" d="M20 132 H84"/>
+<path class="flow" d="M208 132 H237.39999999999998"/><path class="flow" d="M231.39999999999998 127 L237.39999999999998 132 L231.39999999999998 137"/>
+<path class="flow" d="M348.4 132 H444.19999999999993"/><path class="flow" d="M438.19999999999993 127 L444.19999999999993 132 L438.19999999999993 137"/>
+<path class="flow" d="M571.1999999999999 132 H607.8"/><path class="flow" d="M601.8 127 L607.8 132 L601.8 137"/>
+<path class="flow" d="M734.8 132 H749.8"/><path class="flow" d="M743.8 127 L749.8 132 L743.8 137"/>
+<path class="flow" d="M876.8 132 H927.8"/><path class="flow" d="M921.8 127 L927.8 132 L921.8 137"/>
+<path class="flow" d="M1054.8 132 H1091.3999999999999"/><path class="flow" d="M1085.3999999999999 127 L1091.3999999999999 132 L1085.3999999999999 137"/>
+<path class="flow" d="M1202.3999999999999 132 H1243"/><path class="flow" d="M1237 127 L1243 132 L1237 137"/>
+<g data-stage="retrieve">
+<rect class="box" x="84" y="104" width="124" height="56" rx="6"/>
+<text class="label" x="146" y="137" text-anchor="middle">retrieve</text>
+<path class="deny" d="M93 160 V257"/>
+<path class="deny" d="M88 174 L93 182 L98 174"/>
+<text class="reason" x="102" y="200" data-detail="malformed_request" data-reason="malformed_request">malformed_request</text>
+<text class="reason" x="102" y="226" data-detail="retriever_error" data-reason="retriever_error">retriever_error</text>
+<text class="reason" x="102" y="252" data-detail="timeout" data-reason="timeout">timeout</text>
+</g>
+<g data-stage="contract v1">
+<rect class="box contract" x="240.39999999999998" y="111" width="108" height="42" rx="6"/>
+<text class="sub mono" x="294.4" y="137" text-anchor="middle">contract v1</text>
+<path class="deny" d="M249.39999999999998 153 V332"/>
+<path class="deny" d="M244.39999999999998 167 L249.39999999999998 175 L254.39999999999998 167"/>
+<text class="reason" x="258.4" y="193" data-reason="retriever_error">retriever_error</text>
+<text class="code" x="258.4" y="211" data-detail="malformed_candidate" data-reason="retriever_error">malformed_candidate</text>
+<text class="reason" x="258.4" y="237" data-reason="fls_denied">fls_denied</text>
+<text class="code" x="258.4" y="255" data-detail="schema_mismatch" data-reason="fls_denied">schema_mismatch</text>
+<text class="code" x="258.4" y="273" data-detail="tenant_mismatch" data-reason="fls_denied">tenant_mismatch</text>
+<text class="code" x="258.4" y="291" data-detail="embedding_model_rejected" data-reason="fls_denied">embedding_model_rejected</text>
+<text class="code" x="258.4" y="309" data-detail="undeclared_field" data-reason="fls_denied">undeclared_field</text>
+<text class="code" x="258.4" y="327" data-detail="hygiene_unapproved" data-reason="fls_denied">hygiene_unapproved</text>
+</g>
+<g data-stage="access check">
+<rect class="box" x="447.19999999999993" y="104" width="124" height="56" rx="6"/>
+<text class="label" x="509.19999999999993" y="128" text-anchor="middle">access check</text>
+<text class="sub" x="509.19999999999993" y="146" text-anchor="middle">FLS · sharing</text>
+<path class="deny" d="M456.19999999999993 160 V437"/>
+<path class="deny" d="M451.19999999999993 174 L456.19999999999993 182 L461.19999999999993 174"/>
+<text class="reason" x="465.19999999999993" y="200" data-reason="fls_denied">fls_denied</text>
+<text class="code" x="465.19999999999993" y="218" data-detail="entity_denied" data-reason="fls_denied">entity_denied</text>
+<text class="code" x="465.19999999999993" y="236" data-detail="field_denied" data-reason="fls_denied">field_denied</text>
+<text class="code" x="465.19999999999993" y="254" data-detail="record_denied" data-reason="fls_denied">record_denied</text>
+<text class="code" x="465.19999999999993" y="272" data-detail="object_mismatch" data-reason="fls_denied">object_mismatch</text>
+<text class="reason" x="465.19999999999993" y="298" data-reason="fls_unreadable">fls_unreadable</text>
+<text class="code" x="465.19999999999993" y="316" data-detail="entity_unreadable" data-reason="fls_unreadable">entity_unreadable</text>
+<text class="code" x="465.19999999999993" y="334" data-detail="field_unreadable" data-reason="fls_unreadable">field_unreadable</text>
+<text class="code" x="465.19999999999993" y="352" data-detail="record_unreadable" data-reason="fls_unreadable">record_unreadable</text>
+<text class="code" x="465.19999999999993" y="370" data-detail="object_unverified" data-reason="fls_unreadable">object_unverified</text>
+<text class="code" x="465.19999999999993" y="388" data-detail="access_check_error" data-reason="fls_unreadable">access_check_error</text>
+<text class="code" x="465.19999999999993" y="406" data-detail="audit_failure" data-reason="fls_unreadable">audit_failure</text>
+<text class="reason" x="465.19999999999993" y="432" data-detail="timeout" data-reason="timeout">timeout</text>
+</g>
+<g data-stage="live re-read">
+<rect class="box" x="610.8" y="104" width="124" height="56" rx="6"/>
+<text class="label" x="672.8" y="128" text-anchor="middle">live re-read</text>
+<text class="sub" x="672.8" y="146" text-anchor="middle">hash must match</text>
+<path class="deny" d="M619.8 160 V311"/>
+<path class="deny" d="M614.8 174 L619.8 182 L624.8 174"/>
+<text class="reason" x="628.8" y="200" data-reason="fls_denied">fls_denied</text>
+<text class="code" x="628.8" y="218" data-detail="stale_chunk" data-reason="fls_denied">stale_chunk</text>
+<text class="reason" x="628.8" y="244" data-reason="fls_unreadable">fls_unreadable</text>
+<text class="code" x="628.8" y="262" data-detail="source_error" data-reason="fls_unreadable">source_error</text>
+<text class="code" x="628.8" y="280" data-detail="source_mismatch" data-reason="fls_unreadable">source_mismatch</text>
+<text class="reason" x="628.8" y="306" data-detail="timeout" data-reason="timeout">timeout</text>
+</g>
+<g data-stage="sanitize">
+<rect class="box" x="752.8" y="104" width="124" height="56" rx="6"/>
+<text class="label" x="814.8" y="137" text-anchor="middle">sanitize</text>
+<path class="deny" d="M761.8 160 V277"/>
+<path class="deny" d="M756.8 174 L761.8 182 L766.8 174"/>
+<text class="reason" x="770.8" y="200" data-reason="injection_detected">injection_detected</text>
+<text class="code" x="770.8" y="218" data-detail="hidden_payload" data-reason="injection_detected">hidden_payload</text>
+<text class="code" x="770.8" y="236" data-detail="embedded_instruction" data-reason="injection_detected">embedded_instruction</text>
+<text class="code" x="770.8" y="254" data-detail="oversize_chunk" data-reason="injection_detected">oversize_chunk</text>
+<text class="code" x="770.8" y="272" data-detail="empty_after_sanitize" data-reason="injection_detected">empty_after_sanitize</text>
+</g>
+<g data-stage="Trust Layer">
+<rect class="box" x="930.8" y="104" width="124" height="56" rx="6"/>
+<text class="label" x="992.8" y="128" text-anchor="middle">Trust Layer</text>
+<text class="sub" x="992.8" y="146" text-anchor="middle">local classifier</text>
+<path class="deny" d="M939.8 160 V293"/>
+<path class="deny" d="M934.8 174 L939.8 182 L944.8 174"/>
+<text class="reason" x="948.8" y="200" data-reason="injection_detected">injection_detected</text>
+<text class="code" x="948.8" y="218" data-detail="classifier_flagged" data-reason="injection_detected">classifier_flagged</text>
+<text class="reason" x="948.8" y="244" data-reason="safety_unverified">safety_unverified</text>
+<text class="code" x="948.8" y="262" data-detail="classifier_error" data-reason="safety_unverified">classifier_error</text>
+<text class="reason" x="948.8" y="288" data-detail="timeout" data-reason="timeout">timeout</text>
+</g>
+<g data-stage="LLM">
+<rect class="box" x="1094.3999999999999" y="104" width="108" height="56" rx="6"/>
+<text class="label" x="1148.3999999999999" y="137" text-anchor="middle">LLM</text>
+<text class="sub" x="1094.3999999999999" y="192">no deny branch:</text>
+<text class="sub" x="1094.3999999999999" y="210">it reads, never decides</text>
+</g>
+<text class="legend" x="20" y="484"><tspan class="n">0</tspan> leaked chunks in 36 permission scenarios  ·  <tspan class="n">316/316</tspan> offline tests  ·  injection detection <tspan class="n">76.3–81.3%</tspan> on blind corpus v2 (5 runs), false positives <tspan class="n">0–1.3%</tspan></text>
+</svg>

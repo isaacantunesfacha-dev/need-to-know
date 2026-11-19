@@ -224,8 +224,8 @@ function terminal(x, os, prompt) {
       <path d="M${x} ${y + 48} L${x + w} ${y + 48}" ${thin}/>${chrome}`,
     text: `${mono(x + 20, y + 92, `${prompt} pnpm install --frozen-lockfile`, INK, 17)}
       ${mono(x + 20, y + 126, `${prompt} pnpm test`, INK, 17)}
-      ${mono(x + 20, y + 178, "ℹ tests 313")}
-      ${mono(x + 20, y + 212, "ℹ pass 313")}
+      ${mono(x + 20, y + 178, "ℹ tests 316")}
+      ${mono(x + 20, y + 212, "ℹ pass 316")}
       ${mono(x + 20, y + 246, "ℹ fail 0", RED)}`,
   };
 }

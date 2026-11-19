@@ -2,6 +2,8 @@
 
 <h1 align="center">need-to-know</h1>
 
+<p align="center"><a href="assets/pipeline.svg"><img src="assets/pipeline.svg" alt="A question flows left to right through retrieve, contract v1, access check, live re-read, sanitize and Trust Layer to the LLM. Every stage except the LLM can deny; each denial drops down with its audit reason and detail code." width="100%"></a></p>
+
 <p align="center">
 <img alt="leakage" src="https://img.shields.io/badge/leakage-0-2ea44f?style=flat-square">
 <img alt="MCP" src="https://img.shields.io/badge/MCP-stdio-6e40c9?style=flat-square">
@@ -41,9 +43,9 @@ pnpm install --frozen-lockfile
 pnpm test
 ```
 
-<p align="center"><img src="assets/case-study-illustrations/00-run-the-tests.png" alt="The same two commands in a macOS and a Linux terminal, each ending with tests 313, pass 313, fail 0" width="860"></p>
+<p align="center"><img src="assets/case-study-illustrations/00-run-the-tests.png" alt="The same two commands in a macOS and a Linux terminal, each ending with tests 316, pass 316, fail 0" width="860"></p>
 
-Supported platforms are macOS and Linux. On 2026-11-19 both ran the full suite in CI with 313 tests and 0 failures, and on a laptop it finishes in under a second. Windows is not supported. `pnpm eval` then runs the permission evaluator and exits non-zero if a single chunk leaks.
+Supported platforms are macOS and Linux. On 2026-11-19 both ran the full suite in CI with 316 tests and 0 failures, and on a laptop it finishes in under a second. Windows is not supported. `pnpm eval` then runs the permission evaluator and exits non-zero if a single chunk leaks.
 
 ## Try the demo
 
@@ -67,7 +69,7 @@ pnpm approvals    # the human channel
 Every number below comes from a run in this repo, and you can reproduce all of them except the classifier range without a model.
 
 ```txt
-313/313   adversarial and boundary tests, offline (pnpm test)
+316/316   adversarial and boundary tests, offline (pnpm test)
 0         leaked chunks across 36 permission scenarios (pnpm eval)
 76–81%    injection detection on a static blind corpus, 5 runs (adaptive attacker: see below)
 0–1.3%    false positives on the same corpus

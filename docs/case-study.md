@@ -35,7 +35,7 @@ Every number here comes from a run in this repository, and the first three rows 
 
 | Measure | Result | How to reproduce |
 |---|---|---|
-| Adversarial and boundary tests, offline | 313/313 | `pnpm test` |
+| Adversarial and boundary tests, offline | 316/316 | `pnpm test` |
 | Chunks leaked across 36 simulated permission scenarios | 0 | `pnpm eval`, see [evaluation](evaluation.md) |
 | Correct deny reason / valid records still served | 57/57 and 19/19 | same |
 | Injection detection on a blind corpus (80 attacks, 80 benign), 5 runs | 76.3 to 81.3% (patterns alone: 30.0%) | `pnpm eval:classifier` (needs Ollama) |
