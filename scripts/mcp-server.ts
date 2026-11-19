@@ -8,7 +8,7 @@
  *   GINA_EMBEDDER          local backend: ollama (default, nomic-embed-text) | hash (simulated, offline).
  *   GINA_USER_ID           required. The human this server acts for (18-char user id).
  *   GINA_SERVICE_USER_ID   optional. The integration user; it can never approve.
- *   GINA_INDEX_RECORDS     comma list of Object:Id to ingest at startup, e.g. "Account:001gK00001baEzVQAU".
+ *   GINA_INDEX_RECORDS     comma list of Object:Id to ingest at startup, e.g. "Account:001XXXXXXXXXXXXXXX".
  *   GINA_HYGIENE_FILE      default .gina/hygiene.json: { "<recordId>": { status, auditedBy, auditedAt } }, written by people.
  *   GINA_APPROVALS_FILE    default .gina/local/approvals.json (local) or .gina/approvals.json (salesforce); shared with `pnpm approvals`.
  *   SALESFORCE_ORG_ALIAS   default minha-org-agentforce (sf CLI transport).

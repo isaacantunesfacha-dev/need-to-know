@@ -31,3 +31,5 @@ design/illustrations/svg/*.html
 .ai-memory.toml
 temp/
 assets/cover/*.html
+# Org facts: local only (see CLAUDE.local.example.md).
+CLAUDE.local.md
