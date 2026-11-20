@@ -31,7 +31,9 @@ design/illustrations/svg/*.html
 .ai-memory.toml
 temp/
 assets/cover/*.html
-# Org facts: local only (see CLAUDE.local.example.md).
+# Claude Code instructions and org facts: local only, never published.
+CLAUDE.md
 CLAUDE.local.md
+CLAUDE.local.example.md
 # Visual style reference of unverified authorship: kept locally, never published.
 assets/references/mecha-style-reference.jpg

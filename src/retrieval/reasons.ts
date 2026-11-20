@@ -3,7 +3,7 @@ import type { Decision, Detail, Reason } from "./types.ts";
 /**
  * The only place where a `detail` becomes a `reason`. Callers pass the detail;
  * the reason and the decision are derived, so the audit log cannot disagree
- * with the enum documented in CLAUDE.md.
+ * with the `Reason` enum in types.ts.
  *
  * `fls_unreadable` means the permission could not be confirmed (error,
  * missing or ambiguous answer). `fls_denied` means a definite "no", from the

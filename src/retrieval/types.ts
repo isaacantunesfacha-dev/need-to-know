@@ -1,5 +1,5 @@
 /**
- * Closed set of audit reasons (CLAUDE.md, "Log reasons"). Never set by hand:
+ * Closed set of audit reasons. Never set by hand:
  * derived from `Detail` by `reasonFor` in reasons.ts.
  */
 export type Reason =
