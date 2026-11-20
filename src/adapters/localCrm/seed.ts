@@ -1,6 +1,6 @@
 /**
- * Seed that mirrors the live fixtures measured on the org (CLAUDE.md,
- * scripts/live-check.ts), with synthetic ids:
+ * Seed that mirrors the live fixtures measured on the org
+ * (scripts/live-check.ts), with synthetic ids:
  *   admin       View All Data, reads and edits everything.
  *   restricted  "Minimum Access" + Gina_RAG_Restricted_Test: Account read
  *               (no edit), FLS Name + Industry only; Note read.
